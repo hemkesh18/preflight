@@ -25,7 +25,13 @@ logger = logging.getLogger("preflight.memory")
 
 
 class HindsightMemoryStore:
-    def __init__(self, bank_id: str = "kestrel-pay", base_url: Optional[str] = None, api_key: Optional[str] = None):
+    def __init__(
+        self,
+        bank_id: str = "kestrel-pay",
+        base_url: Optional[str] = None,
+        api_key: Optional[str] = None,
+        fresh_bank: bool = False
+    ):
         self.bank_id = bank_id
         self.base_url = base_url or os.getenv("HINDSIGHT_BASE_URL", "https://api.hindsight.vectorize.io")
         self.api_key = api_key or os.getenv("HINDSIGHT_API_KEY")
@@ -34,8 +40,23 @@ class HindsightMemoryStore:
             raise ValueError("HINDSIGHT_API_KEY is not set. Check your .env file.")
 
         self.client = Hindsight(base_url=self.base_url, api_key=self.api_key)
+        self._retained_doc_ids = set()
         self._pattern_cache: Optional[Dict[str, Any]] = None
         self._cache_timestamp: float = 0.0
+
+        if fresh_bank:
+            self.purge_bank()
+        self.ensure_bank()
+
+    def purge_bank(self) -> None:
+        """Deletes the memory bank completely to ensure sterile replay / test isolation."""
+        try:
+            self.client.delete_bank(bank_id=self.bank_id)
+            logger.info(f"Purged existing memory bank '{self.bank_id}' for sterile run.")
+        except Exception as e:
+            logger.debug(f"Bank purge notice (may not exist): {e}")
+        self._retained_doc_ids.clear()
+        self._pattern_cache = None
 
     def ensure_bank(self) -> None:
         """
@@ -146,15 +167,21 @@ class HindsightMemoryStore:
             "stage": "pre_deploy"
         }
 
+        doc_id = f"deploy-{deploy_id}"
+        if doc_id in self._retained_doc_ids:
+            logger.debug(f"Document {doc_id} already retained in this session; skipping.")
+            return RetainResponse(success=True, bank_id=self.bank_id, items_count=0, var_async=False)
+
         resp = self.client.retain(
             bank_id=self.bank_id,
             content=content,
             timestamp=ts,
             context="Kestrel Pay CI/CD Pipeline Gate - Pre-Deploy Risk Evaluation",
-            document_id=f"deploy-{deploy_id}",
+            document_id=doc_id,
             tags=tags,
             metadata=metadata
         )
+        self._retained_doc_ids.add(doc_id)
 
         if wait_for_completion and getattr(resp, "operation_id", None):
             self.wait_for_operation(resp.operation_id)
@@ -231,15 +258,21 @@ class HindsightMemoryStore:
             "stage": "post_deploy"
         }
 
+        doc_id = f"outcome-{deploy_id}"
+        if doc_id in self._retained_doc_ids:
+            logger.debug(f"Document {doc_id} already retained in this session; skipping.")
+            return RetainResponse(success=True, bank_id=self.bank_id, items_count=0, var_async=False)
+
         resp = self.client.retain(
             bank_id=self.bank_id,
             content=content,
             timestamp=ts,
             context="Kestrel Pay Incident & Deployment Post-Mortem Records",
-            document_id=f"outcome-{deploy_id}",
+            document_id=doc_id,
             tags=tags,
             metadata=metadata
         )
+        self._retained_doc_ids.add(doc_id)
 
         if wait_for_completion and getattr(resp, "operation_id", None):
             self.wait_for_operation(resp.operation_id)
