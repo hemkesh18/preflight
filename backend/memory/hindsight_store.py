@@ -48,6 +48,15 @@ class HindsightMemoryStore:
             self.purge_bank()
         self.ensure_bank()
 
+    def _delete_document_if_exists(self, doc_id: str) -> None:
+        """Deletes any previous version of a document to guarantee strict idempotency across process restarts."""
+        try:
+            _run_async = Hindsight.retain_batch.__globals__.get("_run_async")
+            if _run_async:
+                _run_async(self.client.documents.delete_document(bank_id=self.bank_id, document_id=doc_id))
+        except Exception as e:
+            logger.debug(f"Document {doc_id} delete check notice: {e}")
+
     def purge_bank(self) -> None:
         """Deletes the memory bank completely to ensure sterile replay / test isolation."""
         try:
@@ -172,6 +181,9 @@ class HindsightMemoryStore:
             logger.debug(f"Document {doc_id} already retained in this session; skipping.")
             return RetainResponse(success=True, bank_id=self.bank_id, items_count=0, var_async=False)
 
+        # True cross-process idempotency: purge prior document version if already exists
+        self._delete_document_if_exists(doc_id)
+
         resp = self.client.retain(
             bank_id=self.bank_id,
             content=content,
@@ -262,6 +274,9 @@ class HindsightMemoryStore:
         if doc_id in self._retained_doc_ids:
             logger.debug(f"Document {doc_id} already retained in this session; skipping.")
             return RetainResponse(success=True, bank_id=self.bank_id, items_count=0, var_async=False)
+
+        # True cross-process idempotency
+        self._delete_document_if_exists(doc_id)
 
         resp = self.client.retain(
             bank_id=self.bank_id,

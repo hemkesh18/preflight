@@ -37,5 +37,6 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 .vscode/
-.idea/
-*.swp
+# Cache and Scratch
+data/cache/
+scratch/

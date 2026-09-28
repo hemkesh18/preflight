@@ -134,81 +134,95 @@ DECOY_SCHEDULE = {
 }
 
 
-def make_realistic_pr_and_diff(service: str, change_type: str, pattern_id: str = None, is_decoy: bool = False):
+def make_realistic_pr_and_diff(service: str, change_type: str, pattern_id: str = None, is_decoy: bool = False, occurrence_idx: int = 0):
     """
     Generates realistic, strictly consistent PR titles, files changed, and code diffs.
-    Zero generic filler lines.
+    Varies PR titles, diff values, authors and metrics across occurrences of the same pattern.
     """
     if pattern_id == "P1":
-        title = "fix(payments): update worker buffer thresholds in config"
-        files = ["config/production.yaml", "helm/values-prod.yaml"]
-        diff = (
-            "--- a/config/production.yaml\n"
-            "+++ b/config/production.yaml\n"
-            "@@ -42,6 +42,6 @@\n"
-            "-  pool_max_connections: 50\n"
-            "+  pool_max_connections: 20\n"
-            "-  keepalive_timeout_ms: 3000\n"
-            "+  keepalive_timeout_ms: 15000\n"
-            "-  max_overflow: 30\n"
-            "+  max_overflow: 5"
-        )
+        variations = [
+            ("fix(payments): update worker buffer thresholds in config",
+             ["config/production.yaml", "helm/values-prod.yaml"],
+             "--- a/config/production.yaml\n+++ b/config/production.yaml\n@@ -42,6 +42,6 @@\n-  pool_max_connections: 50\n+  pool_max_connections: 15\n-  keepalive_timeout_ms: 3000\n+  keepalive_timeout_ms: 18000\n-  max_overflow: 30\n+  max_overflow: 4"),
+            ("perf(payments): tune threadpool and db timeout parameters",
+             ["config/database.yaml", "helm/values-prod.yaml"],
+             "--- a/config/database.yaml\n+++ b/config/database.yaml\n@@ -38,6 +38,6 @@\n-  pool_max_connections: 55\n+  pool_max_connections: 18\n-  keepalive_timeout_ms: 3500\n+  keepalive_timeout_ms: 16000\n-  max_overflow: 25\n+  max_overflow: 5"),
+            ("chore(config): adjust redis retry backoff and pool limits",
+             ["config/payments_pool.yaml"],
+             "--- a/config/payments_pool.yaml\n+++ b/config/payments_pool.yaml\n@@ -21,6 +21,6 @@\n-  pool_max_connections: 48\n+  pool_max_connections: 16\n-  keepalive_timeout_ms: 2500\n+  keepalive_timeout_ms: 15000\n-  max_overflow: 20\n+  max_overflow: 3"),
+            ("chore(payments): refresh downstream gateway connection timeouts with canary",
+             ["config/production.yaml"],
+             "--- a/config/production.yaml\n+++ b/config/production.yaml\n@@ -42,5 +42,6 @@\n-  pool_max_connections: 50\n+  pool_max_connections: 22\n+  canary_routing_ratio: 0.05")
+        ]
+        title, files, diff = variations[occurrence_idx % len(variations)]
     elif pattern_id == "P2":
-        title = "feat(ledger): partition ledger_entries table by currency_code"
-        files = ["migrations/202606_ledger_settlement.sql", "src/models/ledger.py"]
-        diff = (
-            "--- a/migrations/202606_ledger_settlement.sql\n"
-            "+++ b/migrations/202606_ledger_settlement.sql\n"
-            "@@ -15,4 +15,3 @@\n"
-            "-ALTER TABLE ledger_entries ADD COLUMN settlement_epoch BIGINT;\n"
-            "+ALTER TABLE ledger_entries DROP COLUMN legacy_settlement_id, ADD COLUMN settlement_epoch BIGINT NOT NULL;"
-        )
+        variations = [
+            ("feat(ledger): partition ledger_entries table by currency_code",
+             ["migrations/202606_ledger_settlement.sql", "src/models/ledger.py"],
+             "--- a/migrations/202606_ledger_settlement.sql\n+++ b/migrations/202606_ledger_settlement.sql\n@@ -15,4 +15,3 @@\n-ALTER TABLE ledger_entries ADD COLUMN settlement_epoch BIGINT;\n+ALTER TABLE ledger_entries DROP COLUMN legacy_settlement_id, ADD COLUMN settlement_epoch BIGINT NOT NULL;"),
+            ("refactor(ledger): restructure settlement balance tracking columns",
+             ["migrations/202607_ledger_rebalance.sql", "src/models/settlement.py"],
+             "--- a/migrations/202607_ledger_rebalance.sql\n+++ b/migrations/202607_ledger_rebalance.sql\n@@ -22,4 +22,3 @@\n-ALTER TABLE ledger_entries RENAME COLUMN legacy_settlement_id TO archived_id;\n+ALTER TABLE ledger_entries DROP COLUMN legacy_settlement_id;"),
+            ("feat(ledger): optimize transaction ledger storage layout",
+             ["migrations/202608_ledger_compact.sql", "src/models/journal.py"],
+             "--- a/migrations/202608_ledger_compact.sql\n+++ b/migrations/202608_ledger_compact.sql\n@@ -10,3 +10,2 @@\n-ALTER TABLE ledger_entries ADD COLUMN compact_ref VARCHAR(32);\n+ALTER TABLE ledger_entries DROP COLUMN legacy_settlement_id;")
+        ]
+        title, files, diff = variations[occurrence_idx % len(variations)]
     elif pattern_id == "P3":
-        title = "chore(deps): bump pyjwt and cryptography to latest minor"
-        files = ["requirements.txt", "Pipfile.lock"]
-        diff = (
-            "--- a/requirements.txt\n"
-            "+++ b/requirements.txt\n"
-            "@@ -12,4 +12,4 @@\n"
-            "-pyjwt==2.8.0\n"
-            "+pyjwt==2.10.1\n"
-            "-cryptography==42.0.5\n"
-            "+cryptography==43.0.1"
-        )
+        variations = [
+            ("chore(deps): bump pyjwt and cryptography to latest minor",
+             ["requirements.txt", "Pipfile.lock"],
+             "--- a/requirements.txt\n+++ b/requirements.txt\n@@ -12,4 +12,4 @@\n-pyjwt==2.8.0\n+pyjwt==2.10.1\n-cryptography==42.0.5\n+cryptography==43.0.1"),
+            ("chore(security): upgrade core auth token handling packages",
+             ["requirements.txt"],
+             "--- a/requirements.txt\n+++ b/requirements.txt\n@@ -12,3 +12,3 @@\n-pyjwt==2.8.0\n+pyjwt==2.10.0"),
+            ("chore(deps): update security libraries and token verifier",
+             ["pyproject.toml", "poetry.lock"],
+             "--- a/pyproject.toml\n+++ b/pyproject.toml\n@@ -28,2 +28,2 @@\n-pyjwt = \"^2.8.0\"\n+pyjwt = \"^2.10.1\"")
+        ]
+        title, files, diff = variations[occurrence_idx % len(variations)]
     elif pattern_id == "P4":
-        title = "feat(checkout): activate checkout_v2 cohort with session caching"
-        files = ["config/features.json", "src/services/session_cache.ts"]
-        diff = (
-            "--- a/config/features.json\n"
-            "+++ b/config/features.json\n"
-            "@@ -8,4 +8,4 @@\n"
-            "-  \"checkout_v2\": false,\n"
-            "+  \"checkout_v2\": true,\n"
-            "-  \"session_cache_ttl_sec\": 3600\n"
-            "+  \"session_cache_ttl_sec\": 60"
-        )
+        variations = [
+            ("feat(checkout): activate checkout_v2 cohort with session caching",
+             ["config/features.json", "src/services/session_cache.ts"],
+             "--- a/config/features.json\n+++ b/config/features.json\n@@ -8,4 +8,4 @@\n-  \"checkout_v2\": false,\n+  \"checkout_v2\": true,\n-  \"session_cache_ttl_sec\": 3600\n+  \"session_cache_ttl_sec\": 60"),
+            ("chore(release): flip experiment cohort and tune caching",
+             ["config/features.json", "src/middleware/session.ts"],
+             "--- a/config/features.json\n+++ b/config/features.json\n@@ -8,4 +8,4 @@\n-  \"checkout_v2\": false,\n+  \"checkout_v2\": true,\n-  \"session_cache_ttl_sec\": 1800\n+  \"session_cache_ttl_sec\": 45"),
+            ("feat(checkout): prepare rollout phase for payment sheet",
+             ["config/features.json"],
+             "--- a/config/features.json\n+++ b/config/features.json\n@@ -8,4 +8,4 @@\n-  \"checkout_v2\": false,\n+  \"checkout_v2\": true,\n-  \"session_cache_ttl_sec\": 3600\n+  \"session_cache_ttl_sec\": 90")
+        ]
+        title, files, diff = variations[occurrence_idx % len(variations)]
     elif pattern_id == "P5":
-        title = "chore(ci): update container base image in build pipeline"
-        files = ["Dockerfile", ".github/workflows/ci.yml"]
-        diff = (
-            "--- a/Dockerfile\n"
-            "+++ b/Dockerfile\n"
-            "@@ -1,4 +1,4 @@\n"
-            "-FROM python:3.11.8-slim-bookworm\n"
-            "+FROM python:3.12.3-slim-bookworm\n"
-            "-RUN apt-get install -y libpq-dev\n"
-            "+RUN apt-get install -y --no-install-recommends libpq-dev"
-        )
+        variations = [
+            ("chore(ci): update container base image in build pipeline",
+             ["Dockerfile", ".github/workflows/ci.yml"],
+             "--- a/Dockerfile\n+++ b/Dockerfile\n@@ -1,4 +1,4 @@\n-FROM python:3.11.8-slim-bookworm\n+FROM python:3.12.3-slim-bookworm\n-RUN apt-get install -y libpq-dev\n+RUN apt-get install -y --no-install-recommends libpq-dev"),
+            ("chore(docker): bump python base image for security patches",
+             ["Dockerfile"],
+             "--- a/Dockerfile\n+++ b/Dockerfile\n@@ -1,2 +1,2 @@\n-FROM python:3.11-alpine3.18\n+FROM python:3.12-alpine3.20"),
+            ("chore(docker): refresh debian slim base image to v12.6",
+             ["Dockerfile"],
+             "--- a/Dockerfile\n+++ b/Dockerfile\n@@ -1,2 +1,2 @@\n-FROM debian:12.4-slim\n+FROM debian:12.6-slim"),
+            ("build(docker): bump alpine base runner for lighter container",
+             ["Dockerfile"],
+             "--- a/Dockerfile\n+++ b/Dockerfile\n@@ -1,2 +1,2 @@\n-FROM alpine:3.18\n+FROM alpine:3.20")
+        ]
+        title, files, diff = variations[occurrence_idx % len(variations)]
     elif pattern_id == "P6":
-        title = "infra(network): tighten vpc egress firewall rules"
-        files = ["terraform/modules/vpc/security_groups.tf", "terraform/environments/prod/main.tf"]
-        diff = (
-            "--- a/terraform/modules/vpc/security_groups.tf\n"
-            "+++ b/terraform/modules/vpc/security_groups.tf\n"
-            "@@ -28,4 +28,4 @@\n"
-            "-  egress { from_port = 0, to_port = 0, protocol = '-1', cidr_blocks = ['0.0.0.0/0'] }\n"
-            "+  egress { from_port = 443, to_port = 443, protocol = 'tcp', cidr_blocks = ['0.0.0.0/0'] }"
-        )
+        variations = [
+            ("infra(network): tighten vpc egress firewall rules",
+             ["terraform/modules/vpc/security_groups.tf", "terraform/environments/prod/main.tf"],
+             "--- a/terraform/modules/vpc/security_groups.tf\n+++ b/terraform/modules/vpc/security_groups.tf\n@@ -28,4 +28,4 @@\n-  egress { from_port = 0, to_port = 0, protocol = '-1', cidr_blocks = ['0.0.0.0/0'] }\n+  egress { from_port = 443, to_port = 443, protocol = 'tcp', cidr_blocks = ['0.0.0.0/0'] }"),
+            ("infra(terraform): consolidate default security groups across vpc",
+             ["terraform/modules/vpc/security_groups.tf"],
+             "--- a/terraform/modules/vpc/security_groups.tf\n+++ b/terraform/modules/vpc/security_groups.tf\n@@ -35,3 +35,3 @@\n-  egress { from_port = 0, to_port = 0, protocol = '-1', cidr_blocks = ['0.0.0.0/0'] }\n+  egress { from_port = 443, to_port = 443, protocol = 'tcp', cidr_blocks = ['10.0.0.0/8'] }"),
+            ("infra(secops): apply least-privilege outbound rule matrix",
+             ["terraform/modules/vpc/security_groups.tf"],
+             "--- a/terraform/modules/vpc/security_groups.tf\n+++ b/terraform/modules/vpc/security_groups.tf\n@@ -40,4 +40,3 @@\n-  egress { from_port = 0, to_port = 65535, protocol = 'tcp', cidr_blocks = ['0.0.0.0/0'] }\n+  egress { from_port = 443, to_port = 443, protocol = 'tcp', cidr_blocks = ['0.0.0.0/0'] }")
+        ]
+        title, files, diff = variations[occurrence_idx % len(variations)]
     elif is_decoy:
         if service == "payments-api" and change_type == "config":
             title = "chore(config): adjust payments api rate limiter buckets"
@@ -454,10 +468,11 @@ def make_realistic_pr_and_diff(service: str, change_type: str, pattern_id: str =
     return title, diff, files
 
 
-def make_dynamic_incident(deploy_time: datetime, service: str, pattern_id: str = None, bg_incident: dict = None):
+def make_dynamic_incident(deploy_time: datetime, service: str, pattern_id: str = None, bg_incident: dict = None, occurrence_idx: int = 0):
     """
     Constructs an authentic incident record where log timestamps fall STRICTLY
     between deploy_time and detected_at, with MTTR matching impact duration exactly.
+    Parameters match the specific PR diff variation of that occurrence.
     """
     delay_min = random.randint(18, 65)
     det_time = deploy_time + timedelta(minutes=delay_min)
@@ -475,26 +490,37 @@ def make_dynamic_incident(deploy_time: datetime, service: str, pattern_id: str =
     det_date_str = det_time.strftime("%Y-%m-%d")
 
     if pattern_id == "P1":
+        p1_params = [
+            {"orig_pool": 50, "reduced_pool": 15, "orig_timeout": 3000, "new_timeout": 18000, "5xx": "16.4%", "p99": 6420},
+            {"orig_pool": 55, "reduced_pool": 18, "orig_timeout": 3500, "new_timeout": 16000, "5xx": "19.2%", "p99": 7150},
+            {"orig_pool": 48, "reduced_pool": 16, "orig_timeout": 2500, "new_timeout": 15000, "5xx": "17.8%", "p99": 6680},
+        ]
+        params = p1_params[occurrence_idx % len(p1_params)]
+        orig_p = params["orig_pool"]
+        red_p = params["reduced_pool"]
+        orig_t = params["orig_timeout"]
+        new_t = params["new_timeout"]
+
         return {
             "severity": "SEV-1",
             "title": f"payments-api Connection Pool Starvation and Spike in 504 Gateway Timeouts ({det_date_str})",
             "detected_at": det_time.isoformat(),
             "resolved_at": res_time.isoformat(),
             "mttr_minutes": mttr_min,
-            "impact": f"Payment processing halted for {mttr_min} minutes; {random.randint(900, 1600)} checkout attempts failed with HTTP 504; p99 latency spiked to 6,800ms.",
+            "impact": f"Payment processing halted for {mttr_min} minutes; {random.randint(900, 1600)} checkout attempts failed with HTTP 504; p99 latency spiked to {params['p99']}ms.",
             "metrics": {
-                "http_5xx_rate": "18.4%",
-                "p99_latency_ms": 6820,
-                "error_budget_burn": "42%",
-                "affected_rps": 320
+                "http_5xx_rate": params["5xx"],
+                "p99_latency_ms": params["p99"],
+                "error_budget_burn": f"{random.randint(35, 48)}%",
+                "affected_rps": random.randint(280, 360)
             },
             "error_logs": [
-                f"ERROR {t1_str} payments-api.pool: sqlalchemy.exc.TimeoutError: QueuePool limit of size 20 overflow 5 reached, connection timed out, timeout 15.00",
+                f"ERROR {t1_str} payments-api.pool: sqlalchemy.exc.TimeoutError: QueuePool limit of size {red_p} overflow 5 reached, connection timed out, timeout {new_t/1000:.2f}",
                 f"FATAL {t2_str} payments-api.gateway: [CheckoutGate] upstream payments-api worker exhausted, returning HTTP 504",
                 f"WARN  {t3_str} payments-api.health: liveness probe failed: HTTP 503 connection refused"
             ],
-            "root_cause": f"Friday evening batch settlement traffic on {det_date_str} coincided with reduced pool_max_connections (decreased from 50 to 20) and high keepalive_timeout_ms (15s), preventing worker connections from recycling.",
-            "fix_steps": "Reverted pool_max_connections to 60, decreased keepalive timeout to 3000ms, and performed rolling restart of payments-api pods.",
+            "root_cause": f"Friday evening batch settlement traffic on {det_date_str} coincided with reduced pool_max_connections (decreased from {orig_p} to {red_p}) and high keepalive_timeout_ms ({new_t}ms), preventing worker connections from recycling.",
+            "fix_steps": f"Reverted pool_max_connections to {orig_p}, decreased keepalive timeout to {orig_t}ms, and performed rolling restart of payments-api pods.",
             "runbook": "RB-PAY-04: Database Connection Pool Exhaustion & Recovery"
         }
     elif pattern_id == "P2":
@@ -632,6 +658,7 @@ def generate_history():
 
     bg_schedule = {b["day"]: b for b in BACKGROUND_INCIDENTS}
 
+    pattern_counts = {p: 0 for p in PLANTED_PATTERNS}
     total_days = 90
     for day in range(1, total_days + 1):
         day_date = START_DATE + timedelta(days=day - 1)
@@ -663,8 +690,10 @@ def generate_history():
             is_bg = (not is_pattern and today_bg is not None and deploy_idx == 0)
             is_decoy = (not is_pattern and not is_bg and today_decoy is not None and deploy_idx == 0)
 
+            cur_occ_idx = 0
             if is_pattern:
                 pid = today_pattern
+                cur_occ_idx = pattern_counts[pid]
                 if pid == "P1":
                     service = "payments-api"
                     change_type = "config"
@@ -697,7 +726,8 @@ def generate_history():
                     hour = random.randint(14, 18)
                     minute = random.randint(0, 59)
 
-                title, diff, files = make_realistic_pr_and_diff(service, change_type, pattern_id=pid)
+                title, diff, files = make_realistic_pr_and_diff(service, change_type, pattern_id=pid, occurrence_idx=cur_occ_idx)
+                pattern_counts[pid] += 1
             elif is_bg:
                 pid = None
                 service = today_bg["service"]
@@ -782,7 +812,7 @@ def generate_history():
                     deploy_record["outcome"] = "build_failure"
                 else:
                     outcome_type = "incident"
-                    incident_data = make_dynamic_incident(timestamp, service, pattern_id=pid)
+                    incident_data = make_dynamic_incident(timestamp, service, pattern_id=pid, occurrence_idx=cur_occ_idx)
                     deploy_record["ci_status"] = "passed"
                     deploy_record["outcome"] = "incident"
                     deploy_record["incident"] = incident_data
