@@ -1,0 +1,4154 @@
+[
+  {
+    "deploy_id": "dep-103",
+    "timestamp": "2026-06-01T09:35:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 1,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-101",
+    "timestamp": "2026-06-01T13:15:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 1,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for payments-api pods",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-102",
+    "timestamp": "2026-06-01T15:02:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 1,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "code",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "feat(infra-terraform): implement idempotency token validation",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-106",
+    "timestamp": "2026-06-02T15:06:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 2,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "refactor(ledger-service): optimize memory allocation in deserializer",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-105",
+    "timestamp": "2026-06-02T15:21:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 2,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-104",
+    "timestamp": "2026-06-02T16:37:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 2,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-109",
+    "timestamp": "2026-06-03T12:49:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 3,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-108",
+    "timestamp": "2026-06-03T13:53:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 3,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-107",
+    "timestamp": "2026-06-03T16:34:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 3,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for payments-api pods",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-110",
+    "timestamp": "2026-06-04T16:40:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 4,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-112",
+    "timestamp": "2026-06-05T12:10:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 5,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-111",
+    "timestamp": "2026-06-05T12:17:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 5,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(config): adjust payments api rate limiter buckets",
+    "diff_summary": "- max_burst: 200\n+ max_burst: 250",
+    "files_changed": [
+      "config/payments.yaml"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-114",
+    "timestamp": "2026-06-06T13:04:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 6,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in notification-service",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-113",
+    "timestamp": "2026-06-06T14:53:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 6,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for checkout-web pods",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-115",
+    "timestamp": "2026-06-06T16:25:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 6,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "chore(config): adjust prometheus scraping interval",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-117",
+    "timestamp": "2026-06-07T11:32:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 7,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-116",
+    "timestamp": "2026-06-07T17:45:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 7,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "fix(payments): update worker buffer thresholds in config",
+    "diff_summary": "- pool_max_connections: 50\n+ pool_max_connections: 20\n- keepalive_timeout_ms: 3000\n+ keepalive_timeout_ms: 15000\n- max_overflow: 30\n+ max_overflow: 5",
+    "files_changed": [
+      "config/production.yaml",
+      "helm/values-prod.yaml"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "payments-api Connection Pool Starvation and Spike in 504 Gateway Timeouts",
+      "detected_at": "2026-06-07T18:54:00+00:00",
+      "resolved_at": "2026-06-07T20:43:00+00:00",
+      "mttr_minutes": 109,
+      "impact": "Payment processing halted for 42 minutes; 1,420 checkout attempts failed with HTTP 504; p99 latency spiked to 6,800ms.",
+      "metrics": {
+        "http_5xx_rate": "18.4%",
+        "p99_latency_ms": 6820,
+        "error_budget_burn": "42%",
+        "affected_rps": 320
+      },
+      "error_logs": [
+        "ERROR 2026-06-05 19:42:11 payments-api.pool: sqlalchemy.exc.TimeoutError: QueuePool limit of size 20 overflow 5 reached, connection timed out, timeout 15.00",
+        "FATAL 2026-06-05 19:42:15 payments-api.gateway: [CheckoutGate] upstream payments-api worker exhausted, returning HTTP 504",
+        "WARN  2026-06-05 19:43:02 payments-api.health: liveness probe failed: HTTP 503 connection refused"
+      ],
+      "root_cause": "Friday evening batch settlement traffic coincided with reduced pool_max_connections (decreased from 50 to 20) and high keepalive_timeout_ms (15s), preventing worker connections from recycling.",
+      "fix_steps": "Reverted pool_max_connections to 60, decreased keepalive timeout to 3000ms, and performed rolling restart of payments-api pods.",
+      "runbook": "RB-PAY-04: Database Connection Pool Exhaustion & Recovery"
+    }
+  },
+  {
+    "deploy_id": "dep-118",
+    "timestamp": "2026-06-08T11:50:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 8,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-119",
+    "timestamp": "2026-06-09T13:35:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 9,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-120",
+    "timestamp": "2026-06-09T14:07:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 9,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-121",
+    "timestamp": "2026-06-10T11:32:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 10,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-122",
+    "timestamp": "2026-06-10T12:09:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 10,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-123",
+    "timestamp": "2026-06-11T10:38:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 11,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "feat(ledger): partition ledger_entries table by currency_code",
+    "diff_summary": "- ALTER TABLE ledger_entries ADD COLUMN settlement_epoch BIGINT;\n+ ALTER TABLE ledger_entries DROP COLUMN legacy_settlement_id, ADD COLUMN settlement_epoch BIGINT NOT NULL;",
+    "files_changed": [
+      "migrations/202606_ledger_settlement.sql",
+      "src/models/ledger.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "search-indexer and reporting-service Crash Loop on Dropped Ledger Column",
+      "detected_at": "2026-06-11T11:55:00+00:00",
+      "resolved_at": "2026-06-11T12:32:00+00:00",
+      "mttr_minutes": 37,
+      "impact": "Merchant transaction search offline; overnight reporting aggregation pipeline halted; 12,000 ledger events queued in Kafka DLQ.",
+      "metrics": {
+        "http_5xx_rate": "12.1%",
+        "p99_latency_ms": 4250,
+        "error_budget_burn": "28%",
+        "affected_rps": 180
+      },
+      "error_logs": [
+        "CRITICAL 2026-06-12 11:24:08 search-indexer.consumer: KeyError: 'legacy_settlement_id' missing from CDC event payload",
+        "ERROR 2026-06-12 11:24:12 reporting-service.pipeline: psycopg2.errors.UndefinedColumn: column ledger_entries.legacy_settlement_id does not exist",
+        "FATAL 2026-06-12 11:24:19 search-indexer: ConsumerGroupOffsetExpiredException: max retry limit exceeded on topic ledger.events"
+      ],
+      "root_cause": "Destructive schema migration in ledger-service dropped legacy_settlement_id immediately without a multi-phase deprecation or backfill phase, crashing downstream consumers.",
+      "fix_steps": "Executed hotfix migration adding back legacy_settlement_id as a generated column aliased to settlement_epoch, resumed Kafka consumer offsets.",
+      "runbook": "RB-DB-02: Zero-Downtime Schema Evolution & Consumer Recovery"
+    }
+  },
+  {
+    "deploy_id": "dep-124",
+    "timestamp": "2026-06-11T12:03:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 11,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "feat(db): add composite index on (created_at, status) in notification-service",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-125",
+    "timestamp": "2026-06-11T16:52:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 11,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for ledger-service pods",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-128",
+    "timestamp": "2026-06-12T13:25:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 12,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-126",
+    "timestamp": "2026-06-12T17:42:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 12,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "chore(checkout-web): routine maintenance and minor fix",
+    "diff_summary": "- debug: false\n+ debug: false",
+    "files_changed": [
+      "src/config.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-127",
+    "timestamp": "2026-06-12T17:55:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 12,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-131",
+    "timestamp": "2026-06-13T09:55:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 13,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "refactor(checkout-web): optimize memory allocation in deserializer",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-130",
+    "timestamp": "2026-06-13T12:00:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 13,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-129",
+    "timestamp": "2026-06-13T12:04:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 13,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-132",
+    "timestamp": "2026-06-14T12:13:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 14,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "chore(ci): update container base image in build pipeline",
+    "diff_summary": "- FROM python:3.11.8-slim-bookworm\n+ FROM python:3.12.3-slim-bookworm\n- RUN apt-get install -y libpq-dev\n+ RUN apt-get install -y --no-install-recommends libpq-dev",
+    "files_changed": [
+      "Dockerfile",
+      ".github/workflows/ci.yml"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "integration-tests",
+      "error_message": "glibc mismatch in base runner: undefined symbol: __pthread_getspecific, version GLIBC_2.34",
+      "duration_sec": 312,
+      "exit_code": 139
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-134",
+    "timestamp": "2026-06-15T15:26:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 15,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-135",
+    "timestamp": "2026-06-15T15:46:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 15,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "refactor(ledger-service): optimize memory allocation in deserializer",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-133",
+    "timestamp": "2026-06-15T16:51:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 15,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-136",
+    "timestamp": "2026-06-16T17:28:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 16,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(config): update log level from debug to info in checkout-web",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-138",
+    "timestamp": "2026-06-17T12:10:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 17,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "feat(payments-api): add structured request trace logging",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-137",
+    "timestamp": "2026-06-17T16:51:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 17,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "fix(checkout-web): handle edge case in customer currency conversion",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-139",
+    "timestamp": "2026-06-18T11:10:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 18,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "chore(deps): bump pyjwt and cryptography to latest minor",
+    "diff_summary": "- pyjwt==2.8.0\n+ pyjwt==2.10.1\n- cryptography==42.0.5\n+ cryptography==43.0.1",
+    "files_changed": [
+      "requirements.txt",
+      "Pipfile.lock"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-2",
+      "title": "checkout-web Widespread HTTP 401 Unauthorized Spike Following Auth JWT Upgrade",
+      "detected_at": "2026-06-18T11:25:00+00:00",
+      "resolved_at": "2026-06-18T12:49:00+00:00",
+      "mttr_minutes": 84,
+      "impact": "Valid logged-in users rejected at checkout page with 'Session Expired'; 3,800 checkout abandonments.",
+      "metrics": {
+        "http_5xx_rate": "1.2%",
+        "http_401_rate": "34.7%",
+        "p99_latency_ms": 840,
+        "error_budget_burn": "19%",
+        "affected_rps": 410
+      },
+      "error_logs": [
+        "WARN 2026-06-19 14:15:33 checkout-web.auth: jwt.exceptions.InvalidAlgorithmError: The specified alg 'RS256' requires strict key format validation in pyjwt>=2.10",
+        "ERROR 2026-06-19 14:15:38 checkout-web.session: Failed to decode user session token from Authorization header: verification failed",
+        "INFO 2026-06-19 14:15:42 auth-service: Rejected token issue: clock skew tolerance exceeded (0s threshold)"
+      ],
+      "root_cause": "auth-service pyjwt dependency upgrade enforced strict asymmetric key formatting and zero leeway on clock skew, rejecting valid JWT tokens issued by older client instances.",
+      "fix_steps": "Configured jwt.decode leeway=10s and aligned public key PEM header formatting; rolled back auth-service to pyjwt 2.8.0 pending client rollout.",
+      "runbook": "RB-SEC-09: JWT Token Invalidation & Algorithm Rotation"
+    }
+  },
+  {
+    "deploy_id": "dep-141",
+    "timestamp": "2026-06-19T12:03:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 19,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "feat(db): add composite index on (created_at, status) in checkout-web",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-140",
+    "timestamp": "2026-06-19T13:27:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 19,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "feat(ledger): add index and backfilled audit column",
+    "diff_summary": "+ ALTER TABLE ledger_entries ADD COLUMN audit_hash VARCHAR(64) DEFAULT '';\n+ UPDATE ledger_entries SET audit_hash = md5(id::text) WHERE audit_hash = '';",
+    "files_changed": [
+      "migrations/202607_backfill_audit.sql"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-142",
+    "timestamp": "2026-06-20T17:10:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 20,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-143",
+    "timestamp": "2026-06-21T10:43:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 21,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-145",
+    "timestamp": "2026-06-22T13:13:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 22,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-146",
+    "timestamp": "2026-06-22T13:29:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 22,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-144",
+    "timestamp": "2026-06-22T17:38:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 22,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "feat(checkout): prepare rollout phase for payment sheet",
+    "diff_summary": "- flags.checkout_v2: false\n+ flags.checkout_v2: true\n- session_cache_ttl_sec: 3600\n+ session_cache_ttl_sec: 60",
+    "files_changed": [
+      "config/features.json",
+      "src/services/session_cache.ts"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "checkout-web Cart State Desync and Payment Submission 500 Cascade",
+      "detected_at": "2026-06-22T18:03:00+00:00",
+      "resolved_at": "2026-06-22T19:31:00+00:00",
+      "mttr_minutes": 88,
+      "impact": "Users charged twice or seeing empty carts on payment confirmation; payment gateway double-submission alert triggered.",
+      "metrics": {
+        "http_5xx_rate": "24.6%",
+        "p99_latency_ms": 5400,
+        "error_budget_burn": "38%",
+        "affected_rps": 560
+      },
+      "error_logs": [
+        "ERROR 2026-06-23 16:32:01 checkout-web.session: CartSessionMismatchError: active cart session 8f72a expired while payment confirmation pending",
+        "FATAL 2026-06-23 16:32:05 payments-api.intent: Duplicate payment idempotency key with mismatching payload hash",
+        "ERROR 2026-06-23 16:32:19 checkout-web.frontend: Uncaught (in promise) Error: HTTP 500 Internal Server Error at CheckoutContainer.tsx:142"
+      ],
+      "root_cause": "Simultaneous activation of checkout_v2 feature flag and reduction of session cache TTL from 3600s to 60s caused cart sessions to vanish midway through 3D-Secure payment handoffs.",
+      "fix_steps": "Restored session_cache_ttl_sec to 3600, disabled checkout_v2 feature flag, executed automated refund reconciliation script.",
+      "runbook": "RB-FE-01: Feature Flag Rollback & Stale State Eviction"
+    }
+  },
+  {
+    "deploy_id": "dep-147",
+    "timestamp": "2026-06-23T10:04:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 23,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-148",
+    "timestamp": "2026-06-24T14:18:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 24,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "chore(config): update log level from debug to info in ledger-service",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-150",
+    "timestamp": "2026-06-25T10:56:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 25,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for search-indexer pods",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-151",
+    "timestamp": "2026-06-25T13:18:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 25,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "config",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "chore(config): adjust prometheus scraping interval",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-149",
+    "timestamp": "2026-06-25T18:51:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 25,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "infra(secops): apply least-privilege outbound rule matrix",
+    "diff_summary": "- egress { from_port = 0, to_port = 0, protocol = '-1', cidr_blocks = ['0.0.0.0/0'] }\n+ egress { from_port = 443, to_port = 443, protocol = 'tcp', cidr_blocks = ['0.0.0.0/0'] }",
+    "files_changed": [
+      "terraform/modules/vpc/security_groups.tf",
+      "terraform/environments/prod/main.tf"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-2",
+      "title": "notification-service Egress Timeout & Queue Overflow on Blocked SMTP Port",
+      "detected_at": "2026-06-25T20:13:00+00:00",
+      "resolved_at": "2026-06-25T20:49:00+00:00",
+      "mttr_minutes": 36,
+      "impact": "Payment confirmation receipts, 2FA OTP codes, and fraud alerts delayed by up to 90 minutes.",
+      "metrics": {
+        "http_5xx_rate": "8.9%",
+        "p99_latency_ms": 3100,
+        "error_budget_burn": "15%",
+        "affected_rps": 120
+      },
+      "error_logs": [
+        "ERROR 2026-06-26 18:05:40 notification-service.mailer: OSError: [Errno 110] Connection timed out while connecting to email-smtp.us-east-1.amazonaws.com:587",
+        "WARN  2026-06-26 18:06:12 notification-service.queue: Redis queue 'email_notifications' exceeded 25,000 pending items",
+        "ERROR 2026-06-26 18:07:01 notification-service.worker: MaxRetryError: SQS message failed 5 times, sending to dead_letter_queue"
+      ],
+      "root_cause": "Terraform security group update tightened default egress to port 443 only, inadvertently dropping outbound TCP traffic on port 587 needed by notification-service.",
+      "fix_steps": "Added explicit egress rule in terraform security_groups.tf allowing outbound TCP port 587 to AWS SES CIDR ranges; ran terraform apply and flushed delayed queue.",
+      "runbook": "RB-INFRA-07: VPC Security Group & Egress Connectivity Troubleshooting"
+    }
+  },
+  {
+    "deploy_id": "dep-152",
+    "timestamp": "2026-06-26T15:32:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 26,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(notification-service): routine maintenance and minor fix",
+    "diff_summary": "- debug: false\n+ debug: false",
+    "files_changed": [
+      "src/config.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-153",
+    "timestamp": "2026-06-26T15:53:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 26,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "refactor(payments-api): optimize memory allocation in deserializer",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-155",
+    "timestamp": "2026-06-27T11:34:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 27,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "feat(ledger-service): implement idempotency token validation",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-154",
+    "timestamp": "2026-06-27T16:35:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 27,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "chore(config): adjust prometheus scraping interval",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-158",
+    "timestamp": "2026-06-28T11:59:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 28,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in infra-terraform",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-157",
+    "timestamp": "2026-06-28T12:43:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 28,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "feat(db): add composite index on (created_at, status) in payments-api",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-156",
+    "timestamp": "2026-06-28T17:37:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 28,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "chore(payments): adjust redis retry backoff and pool limits",
+    "diff_summary": "- pool_max_connections: 50\n+ pool_max_connections: 20\n- keepalive_timeout_ms: 3000\n+ keepalive_timeout_ms: 15000\n- max_overflow: 30\n+ max_overflow: 5",
+    "files_changed": [
+      "config/production.yaml",
+      "helm/values-prod.yaml"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "payments-api Connection Pool Starvation and Spike in 504 Gateway Timeouts",
+      "detected_at": "2026-06-28T17:57:00+00:00",
+      "resolved_at": "2026-06-28T19:11:00+00:00",
+      "mttr_minutes": 74,
+      "impact": "Payment processing halted for 42 minutes; 1,420 checkout attempts failed with HTTP 504; p99 latency spiked to 6,800ms.",
+      "metrics": {
+        "http_5xx_rate": "18.4%",
+        "p99_latency_ms": 6820,
+        "error_budget_burn": "42%",
+        "affected_rps": 320
+      },
+      "error_logs": [
+        "ERROR 2026-06-05 19:42:11 payments-api.pool: sqlalchemy.exc.TimeoutError: QueuePool limit of size 20 overflow 5 reached, connection timed out, timeout 15.00",
+        "FATAL 2026-06-05 19:42:15 payments-api.gateway: [CheckoutGate] upstream payments-api worker exhausted, returning HTTP 504",
+        "WARN  2026-06-05 19:43:02 payments-api.health: liveness probe failed: HTTP 503 connection refused"
+      ],
+      "root_cause": "Friday evening batch settlement traffic coincided with reduced pool_max_connections (decreased from 50 to 20) and high keepalive_timeout_ms (15s), preventing worker connections from recycling.",
+      "fix_steps": "Reverted pool_max_connections to 60, decreased keepalive timeout to 3000ms, and performed rolling restart of payments-api pods.",
+      "runbook": "RB-PAY-04: Database Connection Pool Exhaustion & Recovery"
+    }
+  },
+  {
+    "deploy_id": "dep-159",
+    "timestamp": "2026-06-29T14:50:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 29,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-160",
+    "timestamp": "2026-06-30T10:24:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 30,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(config): update log level from debug to info in search-indexer",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-162",
+    "timestamp": "2026-06-30T13:55:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 30,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "feat(db): add composite index on (created_at, status) in risk-engine",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-161",
+    "timestamp": "2026-06-30T14:19:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 30,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in checkout-web",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-164",
+    "timestamp": "2026-07-01T13:02:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 31,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-163",
+    "timestamp": "2026-07-01T17:21:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 31,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in infra-terraform",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-166",
+    "timestamp": "2026-07-02T15:00:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 32,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "fix(search-indexer): handle edge case in customer currency conversion",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-165",
+    "timestamp": "2026-07-02T17:07:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 32,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-168",
+    "timestamp": "2026-07-03T10:46:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 33,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-167",
+    "timestamp": "2026-07-03T13:04:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 33,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(notification-service): routine maintenance and minor fix",
+    "diff_summary": "- debug: false\n+ debug: false",
+    "files_changed": [
+      "src/config.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-169",
+    "timestamp": "2026-07-03T13:35:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 33,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in notification-service",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-172",
+    "timestamp": "2026-07-04T11:42:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 34,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in infra-terraform",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-170",
+    "timestamp": "2026-07-04T13:25:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 34,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-171",
+    "timestamp": "2026-07-04T14:29:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 34,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-174",
+    "timestamp": "2026-07-05T09:15:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 35,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "feat(auth-service): add structured request trace logging",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-173",
+    "timestamp": "2026-07-05T12:05:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 35,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "feat(ledger): optimize transaction ledger storage layout",
+    "diff_summary": "- ALTER TABLE ledger_entries ADD COLUMN settlement_epoch BIGINT;\n+ ALTER TABLE ledger_entries DROP COLUMN legacy_settlement_id, ADD COLUMN settlement_epoch BIGINT NOT NULL;",
+    "files_changed": [
+      "migrations/202606_ledger_settlement.sql",
+      "src/models/ledger.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "search-indexer and reporting-service Crash Loop on Dropped Ledger Column",
+      "detected_at": "2026-07-05T12:59:00+00:00",
+      "resolved_at": "2026-07-05T14:02:00+00:00",
+      "mttr_minutes": 63,
+      "impact": "Merchant transaction search offline; overnight reporting aggregation pipeline halted; 12,000 ledger events queued in Kafka DLQ.",
+      "metrics": {
+        "http_5xx_rate": "12.1%",
+        "p99_latency_ms": 4250,
+        "error_budget_burn": "28%",
+        "affected_rps": 180
+      },
+      "error_logs": [
+        "CRITICAL 2026-06-12 11:24:08 search-indexer.consumer: KeyError: 'legacy_settlement_id' missing from CDC event payload",
+        "ERROR 2026-06-12 11:24:12 reporting-service.pipeline: psycopg2.errors.UndefinedColumn: column ledger_entries.legacy_settlement_id does not exist",
+        "FATAL 2026-06-12 11:24:19 search-indexer: ConsumerGroupOffsetExpiredException: max retry limit exceeded on topic ledger.events"
+      ],
+      "root_cause": "Destructive schema migration in ledger-service dropped legacy_settlement_id immediately without a multi-phase deprecation or backfill phase, crashing downstream consumers.",
+      "fix_steps": "Executed hotfix migration adding back legacy_settlement_id as a generated column aliased to settlement_epoch, resumed Kafka consumer offsets.",
+      "runbook": "RB-DB-02: Zero-Downtime Schema Evolution & Consumer Recovery"
+    }
+  },
+  {
+    "deploy_id": "dep-175",
+    "timestamp": "2026-07-05T12:45:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 35,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "chore(deps): bump pydantic to 2.7.4 for bug fixes",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-176",
+    "timestamp": "2026-07-06T09:57:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 36,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for auth-service pods",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-177",
+    "timestamp": "2026-07-06T17:29:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 36,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for auth-service pods",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-178",
+    "timestamp": "2026-07-07T17:35:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 37,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "chore(deps): bump pydantic to 2.7.4 for bug fixes",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-180",
+    "timestamp": "2026-07-08T12:53:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 38,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-179",
+    "timestamp": "2026-07-08T17:28:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 38,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in infra-terraform",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-181",
+    "timestamp": "2026-07-09T10:17:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 39,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "build(docker): bump alpine base runner for lighter container",
+    "diff_summary": "- FROM python:3.11.8-slim-bookworm\n+ FROM python:3.12.3-slim-bookworm\n- RUN apt-get install -y libpq-dev\n+ RUN apt-get install -y --no-install-recommends libpq-dev",
+    "files_changed": [
+      "Dockerfile",
+      ".github/workflows/ci.yml"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "integration-tests",
+      "error_message": "glibc mismatch in base runner: undefined symbol: __pthread_getspecific, version GLIBC_2.34",
+      "duration_sec": 312,
+      "exit_code": 139
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-183",
+    "timestamp": "2026-07-09T12:24:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 39,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "chore(config): adjust prometheus scraping interval",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-182",
+    "timestamp": "2026-07-09T13:21:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 39,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "config",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-184",
+    "timestamp": "2026-07-10T15:26:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 40,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "feat(checkout): toggle checkout_v2 beta cohort",
+    "diff_summary": "- flags.checkout_v2: false\n+ flags.checkout_v2: true",
+    "files_changed": [
+      "config/features.json"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-185",
+    "timestamp": "2026-07-11T12:53:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 41,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "feat(risk-engine): add structured request trace logging",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-186",
+    "timestamp": "2026-07-11T15:30:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 41,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-187",
+    "timestamp": "2026-07-11T17:47:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 41,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "chore(deps): bump pydantic to 2.7.4 for bug fixes",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-189",
+    "timestamp": "2026-07-12T11:53:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 42,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-188",
+    "timestamp": "2026-07-12T13:27:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 42,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-190",
+    "timestamp": "2026-07-12T15:37:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 42,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "code",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "fix(infra-terraform): handle edge case in customer currency conversion",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-191",
+    "timestamp": "2026-07-13T11:03:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 43,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "chore(deps): upgrade redis-py client library to 5.0.4",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-192",
+    "timestamp": "2026-07-14T13:21:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 44,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "chore(deps): bump pyjwt and cryptography to latest minor",
+    "diff_summary": "- pyjwt==2.8.0\n+ pyjwt==2.10.1\n- cryptography==42.0.5\n+ cryptography==43.0.1",
+    "files_changed": [
+      "requirements.txt",
+      "Pipfile.lock"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-2",
+      "title": "checkout-web Widespread HTTP 401 Unauthorized Spike Following Auth JWT Upgrade",
+      "detected_at": "2026-07-14T14:11:00+00:00",
+      "resolved_at": "2026-07-14T15:39:00+00:00",
+      "mttr_minutes": 88,
+      "impact": "Valid logged-in users rejected at checkout page with 'Session Expired'; 3,800 checkout abandonments.",
+      "metrics": {
+        "http_5xx_rate": "1.2%",
+        "http_401_rate": "34.7%",
+        "p99_latency_ms": 840,
+        "error_budget_burn": "19%",
+        "affected_rps": 410
+      },
+      "error_logs": [
+        "WARN 2026-06-19 14:15:33 checkout-web.auth: jwt.exceptions.InvalidAlgorithmError: The specified alg 'RS256' requires strict key format validation in pyjwt>=2.10",
+        "ERROR 2026-06-19 14:15:38 checkout-web.session: Failed to decode user session token from Authorization header: verification failed",
+        "INFO 2026-06-19 14:15:42 auth-service: Rejected token issue: clock skew tolerance exceeded (0s threshold)"
+      ],
+      "root_cause": "auth-service pyjwt dependency upgrade enforced strict asymmetric key formatting and zero leeway on clock skew, rejecting valid JWT tokens issued by older client instances.",
+      "fix_steps": "Configured jwt.decode leeway=10s and aligned public key PEM header formatting; rolled back auth-service to pyjwt 2.8.0 pending client rollout.",
+      "runbook": "RB-SEC-09: JWT Token Invalidation & Algorithm Rotation"
+    }
+  },
+  {
+    "deploy_id": "dep-194",
+    "timestamp": "2026-07-15T12:12:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 45,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "code",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "feat(payments-api): implement idempotency token validation",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-193",
+    "timestamp": "2026-07-15T17:03:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 45,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "refactor(reporting-service): optimize memory allocation in deserializer",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-195",
+    "timestamp": "2026-07-16T10:36:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 46,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for reporting-service pods",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-197",
+    "timestamp": "2026-07-17T09:59:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 47,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "refactor(search-indexer): optimize memory allocation in deserializer",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-196",
+    "timestamp": "2026-07-17T10:38:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 47,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "chore(config): adjust payments api rate limiter buckets",
+    "diff_summary": "- max_burst: 200\n+ max_burst: 250",
+    "files_changed": [
+      "config/payments.yaml"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-199",
+    "timestamp": "2026-07-18T09:22:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 48,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-198",
+    "timestamp": "2026-07-18T12:06:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 48,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "feat(checkout-web): add circuit breaker for downstream gateway calls",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-200",
+    "timestamp": "2026-07-19T19:31:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 49,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "perf(payments): tune threadpool and db timeout parameters",
+    "diff_summary": "- pool_max_connections: 50\n+ pool_max_connections: 20\n- keepalive_timeout_ms: 3000\n+ keepalive_timeout_ms: 15000\n- max_overflow: 30\n+ max_overflow: 5",
+    "files_changed": [
+      "config/production.yaml",
+      "helm/values-prod.yaml"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "payments-api Connection Pool Starvation and Spike in 504 Gateway Timeouts",
+      "detected_at": "2026-07-19T20:39:00+00:00",
+      "resolved_at": "2026-07-19T22:16:00+00:00",
+      "mttr_minutes": 97,
+      "impact": "Payment processing halted for 42 minutes; 1,420 checkout attempts failed with HTTP 504; p99 latency spiked to 6,800ms.",
+      "metrics": {
+        "http_5xx_rate": "18.4%",
+        "p99_latency_ms": 6820,
+        "error_budget_burn": "42%",
+        "affected_rps": 320
+      },
+      "error_logs": [
+        "ERROR 2026-06-05 19:42:11 payments-api.pool: sqlalchemy.exc.TimeoutError: QueuePool limit of size 20 overflow 5 reached, connection timed out, timeout 15.00",
+        "FATAL 2026-06-05 19:42:15 payments-api.gateway: [CheckoutGate] upstream payments-api worker exhausted, returning HTTP 504",
+        "WARN  2026-06-05 19:43:02 payments-api.health: liveness probe failed: HTTP 503 connection refused"
+      ],
+      "root_cause": "Friday evening batch settlement traffic coincided with reduced pool_max_connections (decreased from 50 to 20) and high keepalive_timeout_ms (15s), preventing worker connections from recycling.",
+      "fix_steps": "Reverted pool_max_connections to 60, decreased keepalive timeout to 3000ms, and performed rolling restart of payments-api pods.",
+      "runbook": "RB-PAY-04: Database Connection Pool Exhaustion & Recovery"
+    }
+  },
+  {
+    "deploy_id": "dep-201",
+    "timestamp": "2026-07-20T16:45:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 50,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for notification-service pods",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-203",
+    "timestamp": "2026-07-21T12:53:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 51,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "feat(db): add composite index on (created_at, status) in search-indexer",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-204",
+    "timestamp": "2026-07-21T15:21:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 51,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in checkout-web",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-202",
+    "timestamp": "2026-07-21T17:49:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 51,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-206",
+    "timestamp": "2026-07-22T09:33:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 52,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-205",
+    "timestamp": "2026-07-22T14:51:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 52,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-208",
+    "timestamp": "2026-07-23T13:14:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 53,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "feat(payments-api): add structured request trace logging",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-207",
+    "timestamp": "2026-07-23T16:35:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 53,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "feat(checkout): prepare rollout phase for payment sheet",
+    "diff_summary": "- flags.checkout_v2: false\n+ flags.checkout_v2: true\n- session_cache_ttl_sec: 3600\n+ session_cache_ttl_sec: 60",
+    "files_changed": [
+      "config/features.json",
+      "src/services/session_cache.ts"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "checkout-web Cart State Desync and Payment Submission 500 Cascade",
+      "detected_at": "2026-07-23T17:50:00+00:00",
+      "resolved_at": "2026-07-23T19:27:00+00:00",
+      "mttr_minutes": 97,
+      "impact": "Users charged twice or seeing empty carts on payment confirmation; payment gateway double-submission alert triggered.",
+      "metrics": {
+        "http_5xx_rate": "24.6%",
+        "p99_latency_ms": 5400,
+        "error_budget_burn": "38%",
+        "affected_rps": 560
+      },
+      "error_logs": [
+        "ERROR 2026-06-23 16:32:01 checkout-web.session: CartSessionMismatchError: active cart session 8f72a expired while payment confirmation pending",
+        "FATAL 2026-06-23 16:32:05 payments-api.intent: Duplicate payment idempotency key with mismatching payload hash",
+        "ERROR 2026-06-23 16:32:19 checkout-web.frontend: Uncaught (in promise) Error: HTTP 500 Internal Server Error at CheckoutContainer.tsx:142"
+      ],
+      "root_cause": "Simultaneous activation of checkout_v2 feature flag and reduction of session cache TTL from 3600s to 60s caused cart sessions to vanish midway through 3D-Secure payment handoffs.",
+      "fix_steps": "Restored session_cache_ttl_sec to 3600, disabled checkout_v2 feature flag, executed automated refund reconciliation script.",
+      "runbook": "RB-FE-01: Feature Flag Rollback & Stale State Eviction"
+    }
+  },
+  {
+    "deploy_id": "dep-209",
+    "timestamp": "2026-07-23T17:33:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 53,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "chore(deps): upgrade redis-py client library to 5.0.4",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-211",
+    "timestamp": "2026-07-24T12:07:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 54,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(db): add composite index on (created_at, status) in search-indexer",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-210",
+    "timestamp": "2026-07-24T12:22:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 54,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "infra(iam): update reporting s3 bucket read policy",
+    "diff_summary": "+ actions = ['s3:GetObject', 's3:ListBucket']",
+    "files_changed": [
+      "terraform/modules/iam/reporting.tf"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-212",
+    "timestamp": "2026-07-24T12:47:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 54,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-215",
+    "timestamp": "2026-07-25T11:40:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 55,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-213",
+    "timestamp": "2026-07-25T12:18:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 55,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "fix(search-indexer): resolve race condition in webhook dispatcher",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-214",
+    "timestamp": "2026-07-25T17:08:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 55,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-216",
+    "timestamp": "2026-07-26T16:28:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 56,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "chore(deps): upgrade redis-py client library to 5.0.4",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-217",
+    "timestamp": "2026-07-27T10:25:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 57,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(reporting-service): add structured request trace logging",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-220",
+    "timestamp": "2026-07-28T13:55:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 58,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "chore(deps): bump pydantic to 2.7.4 for bug fixes",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-218",
+    "timestamp": "2026-07-28T15:09:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 58,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "infra(secops): apply least-privilege outbound rule matrix",
+    "diff_summary": "- egress { from_port = 0, to_port = 0, protocol = '-1', cidr_blocks = ['0.0.0.0/0'] }\n+ egress { from_port = 443, to_port = 443, protocol = 'tcp', cidr_blocks = ['0.0.0.0/0'] }",
+    "files_changed": [
+      "terraform/modules/vpc/security_groups.tf",
+      "terraform/environments/prod/main.tf"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-2",
+      "title": "notification-service Egress Timeout & Queue Overflow on Blocked SMTP Port",
+      "detected_at": "2026-07-28T16:02:00+00:00",
+      "resolved_at": "2026-07-28T16:47:00+00:00",
+      "mttr_minutes": 45,
+      "impact": "Payment confirmation receipts, 2FA OTP codes, and fraud alerts delayed by up to 90 minutes.",
+      "metrics": {
+        "http_5xx_rate": "8.9%",
+        "p99_latency_ms": 3100,
+        "error_budget_burn": "15%",
+        "affected_rps": 120
+      },
+      "error_logs": [
+        "ERROR 2026-06-26 18:05:40 notification-service.mailer: OSError: [Errno 110] Connection timed out while connecting to email-smtp.us-east-1.amazonaws.com:587",
+        "WARN  2026-06-26 18:06:12 notification-service.queue: Redis queue 'email_notifications' exceeded 25,000 pending items",
+        "ERROR 2026-06-26 18:07:01 notification-service.worker: MaxRetryError: SQS message failed 5 times, sending to dead_letter_queue"
+      ],
+      "root_cause": "Terraform security group update tightened default egress to port 443 only, inadvertently dropping outbound TCP traffic on port 587 needed by notification-service.",
+      "fix_steps": "Added explicit egress rule in terraform security_groups.tf allowing outbound TCP port 587 to AWS SES CIDR ranges; ran terraform apply and flushed delayed queue.",
+      "runbook": "RB-INFRA-07: VPC Security Group & Egress Connectivity Troubleshooting"
+    }
+  },
+  {
+    "deploy_id": "dep-219",
+    "timestamp": "2026-07-28T15:38:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 58,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-221",
+    "timestamp": "2026-07-29T10:48:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 59,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-222",
+    "timestamp": "2026-07-29T12:11:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 59,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "chore(config): adjust prometheus scraping interval",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-223",
+    "timestamp": "2026-07-30T16:18:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 60,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for reporting-service pods",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-226",
+    "timestamp": "2026-07-31T09:10:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 61,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "refactor(auth-service): optimize memory allocation in deserializer",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-225",
+    "timestamp": "2026-07-31T10:34:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 61,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in checkout-web",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-224",
+    "timestamp": "2026-07-31T10:43:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 61,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "chore(reporting-service): routine maintenance and minor fix",
+    "diff_summary": "- debug: false\n+ debug: false",
+    "files_changed": [
+      "src/config.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-229",
+    "timestamp": "2026-08-01T13:01:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 62,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-227",
+    "timestamp": "2026-08-01T13:07:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 62,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(ledger): partition ledger_entries table by currency_code",
+    "diff_summary": "- ALTER TABLE ledger_entries ADD COLUMN settlement_epoch BIGINT;\n+ ALTER TABLE ledger_entries DROP COLUMN legacy_settlement_id, ADD COLUMN settlement_epoch BIGINT NOT NULL;",
+    "files_changed": [
+      "migrations/202606_ledger_settlement.sql",
+      "src/models/ledger.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "search-indexer and reporting-service Crash Loop on Dropped Ledger Column",
+      "detected_at": "2026-08-01T14:00:00+00:00",
+      "resolved_at": "2026-08-01T15:26:00+00:00",
+      "mttr_minutes": 86,
+      "impact": "Merchant transaction search offline; overnight reporting aggregation pipeline halted; 12,000 ledger events queued in Kafka DLQ.",
+      "metrics": {
+        "http_5xx_rate": "12.1%",
+        "p99_latency_ms": 4250,
+        "error_budget_burn": "28%",
+        "affected_rps": 180
+      },
+      "error_logs": [
+        "CRITICAL 2026-06-12 11:24:08 search-indexer.consumer: KeyError: 'legacy_settlement_id' missing from CDC event payload",
+        "ERROR 2026-06-12 11:24:12 reporting-service.pipeline: psycopg2.errors.UndefinedColumn: column ledger_entries.legacy_settlement_id does not exist",
+        "FATAL 2026-06-12 11:24:19 search-indexer: ConsumerGroupOffsetExpiredException: max retry limit exceeded on topic ledger.events"
+      ],
+      "root_cause": "Destructive schema migration in ledger-service dropped legacy_settlement_id immediately without a multi-phase deprecation or backfill phase, crashing downstream consumers.",
+      "fix_steps": "Executed hotfix migration adding back legacy_settlement_id as a generated column aliased to settlement_epoch, resumed Kafka consumer offsets.",
+      "runbook": "RB-DB-02: Zero-Downtime Schema Evolution & Consumer Recovery"
+    }
+  },
+  {
+    "deploy_id": "dep-228",
+    "timestamp": "2026-08-01T16:28:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 62,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-230",
+    "timestamp": "2026-08-02T13:36:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 63,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for payments-api pods",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-232",
+    "timestamp": "2026-08-02T16:05:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 63,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-231",
+    "timestamp": "2026-08-02T16:58:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 63,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-233",
+    "timestamp": "2026-08-03T14:26:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 64,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "chore(config): adjust prometheus scraping interval",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-234",
+    "timestamp": "2026-08-03T16:05:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 64,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "refactor(infra-terraform): optimize memory allocation in deserializer",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-235",
+    "timestamp": "2026-08-04T17:29:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 65,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "feat(infra-terraform): add structured request trace logging",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-238",
+    "timestamp": "2026-08-05T11:19:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 66,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for checkout-web pods",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-236",
+    "timestamp": "2026-08-05T16:48:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 66,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for reporting-service pods",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-237",
+    "timestamp": "2026-08-05T16:56:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 66,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-239",
+    "timestamp": "2026-08-06T12:07:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 67,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(ci): update container base image in build pipeline",
+    "diff_summary": "- FROM python:3.11.8-slim-bookworm\n+ FROM python:3.12.3-slim-bookworm\n- RUN apt-get install -y libpq-dev\n+ RUN apt-get install -y --no-install-recommends libpq-dev",
+    "files_changed": [
+      "Dockerfile",
+      ".github/workflows/ci.yml"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "integration-tests",
+      "error_message": "glibc mismatch in base runner: undefined symbol: __pthread_getspecific, version GLIBC_2.34",
+      "duration_sec": 312,
+      "exit_code": 139
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-240",
+    "timestamp": "2026-08-07T13:26:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 68,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(ledger): add index and backfilled audit column",
+    "diff_summary": "+ ALTER TABLE ledger_entries ADD COLUMN audit_hash VARCHAR(64) DEFAULT '';\n+ UPDATE ledger_entries SET audit_hash = md5(id::text) WHERE audit_hash = '';",
+    "files_changed": [
+      "migrations/202607_backfill_audit.sql"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-241",
+    "timestamp": "2026-08-07T17:09:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 68,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "chore(deps): upgrade redis-py client library to 5.0.4",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-243",
+    "timestamp": "2026-08-08T13:46:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 69,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "refactor(search-indexer): optimize memory allocation in deserializer",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-242",
+    "timestamp": "2026-08-08T13:49:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 69,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "feat(auth-service): add structured request trace logging",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-244",
+    "timestamp": "2026-08-08T16:34:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 69,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-247",
+    "timestamp": "2026-08-09T11:31:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 70,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for risk-engine pods",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-246",
+    "timestamp": "2026-08-09T15:02:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 70,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "config",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "chore(config): refresh datadog apm sampler rates",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-245",
+    "timestamp": "2026-08-09T18:39:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 70,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "fix(payments): update worker buffer thresholds in config",
+    "diff_summary": "- pool_max_connections: 50\n+ pool_max_connections: 20\n- keepalive_timeout_ms: 3000\n+ keepalive_timeout_ms: 15000\n- max_overflow: 30\n+ max_overflow: 5",
+    "files_changed": [
+      "config/production.yaml",
+      "helm/values-prod.yaml"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "payments-api Connection Pool Starvation and Spike in 504 Gateway Timeouts",
+      "detected_at": "2026-08-09T19:18:00+00:00",
+      "resolved_at": "2026-08-09T20:23:00+00:00",
+      "mttr_minutes": 65,
+      "impact": "Payment processing halted for 42 minutes; 1,420 checkout attempts failed with HTTP 504; p99 latency spiked to 6,800ms.",
+      "metrics": {
+        "http_5xx_rate": "18.4%",
+        "p99_latency_ms": 6820,
+        "error_budget_burn": "42%",
+        "affected_rps": 320
+      },
+      "error_logs": [
+        "ERROR 2026-06-05 19:42:11 payments-api.pool: sqlalchemy.exc.TimeoutError: QueuePool limit of size 20 overflow 5 reached, connection timed out, timeout 15.00",
+        "FATAL 2026-06-05 19:42:15 payments-api.gateway: [CheckoutGate] upstream payments-api worker exhausted, returning HTTP 504",
+        "WARN  2026-06-05 19:43:02 payments-api.health: liveness probe failed: HTTP 503 connection refused"
+      ],
+      "root_cause": "Friday evening batch settlement traffic coincided with reduced pool_max_connections (decreased from 50 to 20) and high keepalive_timeout_ms (15s), preventing worker connections from recycling.",
+      "fix_steps": "Reverted pool_max_connections to 60, decreased keepalive timeout to 3000ms, and performed rolling restart of payments-api pods.",
+      "runbook": "RB-PAY-04: Database Connection Pool Exhaustion & Recovery"
+    }
+  },
+  {
+    "deploy_id": "dep-248",
+    "timestamp": "2026-08-10T10:33:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 71,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "chore(deps): upgrade redis-py client library to 5.0.4",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-249",
+    "timestamp": "2026-08-10T11:04:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 71,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-250",
+    "timestamp": "2026-08-10T15:41:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 71,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-252",
+    "timestamp": "2026-08-11T10:27:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 72,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "config",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "chore(config): update log level from debug to info in search-indexer",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-253",
+    "timestamp": "2026-08-11T13:57:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 72,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "chore(config): update log level from debug to info in reporting-service",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-251",
+    "timestamp": "2026-08-11T16:55:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 72,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "feat(db): add composite index on (created_at, status) in risk-engine",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-254",
+    "timestamp": "2026-08-12T15:09:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 73,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(db): add composite index on (created_at, status) in notification-service",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-257",
+    "timestamp": "2026-08-13T09:57:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 74,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-255",
+    "timestamp": "2026-08-13T11:05:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 74,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "chore(auth-service): routine maintenance and minor fix",
+    "diff_summary": "- debug: false\n+ debug: false",
+    "files_changed": [
+      "src/config.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-256",
+    "timestamp": "2026-08-13T11:14:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 74,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "chore(deps): upgrade redis-py client library to 5.0.4",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-258",
+    "timestamp": "2026-08-14T12:04:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 75,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "chore(deps): bump pyjwt and cryptography to latest minor",
+    "diff_summary": "- pyjwt==2.8.0\n+ pyjwt==2.10.1\n- cryptography==42.0.5\n+ cryptography==43.0.1",
+    "files_changed": [
+      "requirements.txt",
+      "Pipfile.lock"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-2",
+      "title": "checkout-web Widespread HTTP 401 Unauthorized Spike Following Auth JWT Upgrade",
+      "detected_at": "2026-08-14T13:03:00+00:00",
+      "resolved_at": "2026-08-14T14:53:00+00:00",
+      "mttr_minutes": 110,
+      "impact": "Valid logged-in users rejected at checkout page with 'Session Expired'; 3,800 checkout abandonments.",
+      "metrics": {
+        "http_5xx_rate": "1.2%",
+        "http_401_rate": "34.7%",
+        "p99_latency_ms": 840,
+        "error_budget_burn": "19%",
+        "affected_rps": 410
+      },
+      "error_logs": [
+        "WARN 2026-06-19 14:15:33 checkout-web.auth: jwt.exceptions.InvalidAlgorithmError: The specified alg 'RS256' requires strict key format validation in pyjwt>=2.10",
+        "ERROR 2026-06-19 14:15:38 checkout-web.session: Failed to decode user session token from Authorization header: verification failed",
+        "INFO 2026-06-19 14:15:42 auth-service: Rejected token issue: clock skew tolerance exceeded (0s threshold)"
+      ],
+      "root_cause": "auth-service pyjwt dependency upgrade enforced strict asymmetric key formatting and zero leeway on clock skew, rejecting valid JWT tokens issued by older client instances.",
+      "fix_steps": "Configured jwt.decode leeway=10s and aligned public key PEM header formatting; rolled back auth-service to pyjwt 2.8.0 pending client rollout.",
+      "runbook": "RB-SEC-09: JWT Token Invalidation & Algorithm Rotation"
+    }
+  },
+  {
+    "deploy_id": "dep-260",
+    "timestamp": "2026-08-14T12:24:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 75,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "fix(reporting-service): handle edge case in customer currency conversion",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-259",
+    "timestamp": "2026-08-14T13:29:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 75,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-262",
+    "timestamp": "2026-08-15T12:38:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 76,
+    "service": "reporting-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to reporting-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/reporting_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-261",
+    "timestamp": "2026-08-15T15:17:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 76,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for payments-api pods",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-263",
+    "timestamp": "2026-08-16T11:40:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 77,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for search-indexer pods",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-265",
+    "timestamp": "2026-08-17T13:20:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 78,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "feat(auth-service): add circuit breaker for downstream gateway calls",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-266",
+    "timestamp": "2026-08-17T14:33:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 78,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-264",
+    "timestamp": "2026-08-17T16:50:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 78,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "infra(terraform): consolidate default security groups across vpc",
+    "diff_summary": "- egress { from_port = 0, to_port = 0, protocol = '-1', cidr_blocks = ['0.0.0.0/0'] }\n+ egress { from_port = 443, to_port = 443, protocol = 'tcp', cidr_blocks = ['0.0.0.0/0'] }",
+    "files_changed": [
+      "terraform/modules/vpc/security_groups.tf",
+      "terraform/environments/prod/main.tf"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-2",
+      "title": "notification-service Egress Timeout & Queue Overflow on Blocked SMTP Port",
+      "detected_at": "2026-08-17T17:09:00+00:00",
+      "resolved_at": "2026-08-17T18:58:00+00:00",
+      "mttr_minutes": 109,
+      "impact": "Payment confirmation receipts, 2FA OTP codes, and fraud alerts delayed by up to 90 minutes.",
+      "metrics": {
+        "http_5xx_rate": "8.9%",
+        "p99_latency_ms": 3100,
+        "error_budget_burn": "15%",
+        "affected_rps": 120
+      },
+      "error_logs": [
+        "ERROR 2026-06-26 18:05:40 notification-service.mailer: OSError: [Errno 110] Connection timed out while connecting to email-smtp.us-east-1.amazonaws.com:587",
+        "WARN  2026-06-26 18:06:12 notification-service.queue: Redis queue 'email_notifications' exceeded 25,000 pending items",
+        "ERROR 2026-06-26 18:07:01 notification-service.worker: MaxRetryError: SQS message failed 5 times, sending to dead_letter_queue"
+      ],
+      "root_cause": "Terraform security group update tightened default egress to port 443 only, inadvertently dropping outbound TCP traffic on port 587 needed by notification-service.",
+      "fix_steps": "Added explicit egress rule in terraform security_groups.tf allowing outbound TCP port 587 to AWS SES CIDR ranges; ran terraform apply and flushed delayed queue.",
+      "runbook": "RB-INFRA-07: VPC Security Group & Egress Connectivity Troubleshooting"
+    }
+  },
+  {
+    "deploy_id": "dep-267",
+    "timestamp": "2026-08-18T14:51:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 79,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for search-indexer pods",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-268",
+    "timestamp": "2026-08-18T15:54:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 79,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "config",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "chore(config): adjust prometheus scraping interval",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-269",
+    "timestamp": "2026-08-19T10:29:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 80,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "feat(flags): enable dark_mode_beta cohort for web users",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-270",
+    "timestamp": "2026-08-19T14:06:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 80,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for risk-engine pods",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-273",
+    "timestamp": "2026-08-20T10:06:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 81,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Maya Lin",
+    "author_email": "maya.lin@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in search-indexer",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-272",
+    "timestamp": "2026-08-20T15:07:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 81,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Liam O'Connor",
+    "author_email": "liam.oconnor@kestrelpay.internal",
+    "pr_title": "infra(k8s): increase memory request for search-indexer pods",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-271",
+    "timestamp": "2026-08-20T15:58:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 81,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "feat(checkout): activate checkout_v2 cohort with session caching",
+    "diff_summary": "- flags.checkout_v2: false\n+ flags.checkout_v2: true\n- session_cache_ttl_sec: 3600\n+ session_cache_ttl_sec: 60",
+    "files_changed": [
+      "config/features.json",
+      "src/services/session_cache.ts"
+    ],
+    "ci_status": "passed",
+    "outcome": "incident",
+    "incident": {
+      "severity": "SEV-1",
+      "title": "checkout-web Cart State Desync and Payment Submission 500 Cascade",
+      "detected_at": "2026-08-20T16:41:00+00:00",
+      "resolved_at": "2026-08-20T17:24:00+00:00",
+      "mttr_minutes": 43,
+      "impact": "Users charged twice or seeing empty carts on payment confirmation; payment gateway double-submission alert triggered.",
+      "metrics": {
+        "http_5xx_rate": "24.6%",
+        "p99_latency_ms": 5400,
+        "error_budget_burn": "38%",
+        "affected_rps": 560
+      },
+      "error_logs": [
+        "ERROR 2026-06-23 16:32:01 checkout-web.session: CartSessionMismatchError: active cart session 8f72a expired while payment confirmation pending",
+        "FATAL 2026-06-23 16:32:05 payments-api.intent: Duplicate payment idempotency key with mismatching payload hash",
+        "ERROR 2026-06-23 16:32:19 checkout-web.frontend: Uncaught (in promise) Error: HTTP 500 Internal Server Error at CheckoutContainer.tsx:142"
+      ],
+      "root_cause": "Simultaneous activation of checkout_v2 feature flag and reduction of session cache TTL from 3600s to 60s caused cart sessions to vanish midway through 3D-Secure payment handoffs.",
+      "fix_steps": "Restored session_cache_ttl_sec to 3600, disabled checkout_v2 feature flag, executed automated refund reconciliation script.",
+      "runbook": "RB-FE-01: Feature Flag Rollback & Stale State Eviction"
+    }
+  },
+  {
+    "deploy_id": "dep-274",
+    "timestamp": "2026-08-21T16:23:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 82,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "chore(risk-engine): routine maintenance and minor fix",
+    "diff_summary": "- debug: false\n+ debug: false",
+    "files_changed": [
+      "src/config.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-275",
+    "timestamp": "2026-08-22T10:53:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 83,
+    "service": "risk-engine",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Elena Rostova",
+    "author_email": "elena.rostova@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to risk-engine logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/risk_engine/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-276",
+    "timestamp": "2026-08-22T14:13:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 83,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-277",
+    "timestamp": "2026-08-22T14:34:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 83,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "feat(notification-service): add circuit breaker for downstream gateway calls",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-279",
+    "timestamp": "2026-08-23T14:15:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 84,
+    "service": "payments-api",
+    "environment": "production",
+    "change_type": "code",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "fix(payments-api): resolve race condition in webhook dispatcher",
+    "diff_summary": "// Routine updates to payments-api logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/payments_api/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-278",
+    "timestamp": "2026-08-23T16:05:00+00:00",
+    "day_of_week": "Sunday",
+    "day_offset": 84,
+    "service": "checkout-web",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(checkout-web): add circuit breaker for downstream gateway calls",
+    "diff_summary": "// Routine updates to checkout-web logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/checkout_web/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-280",
+    "timestamp": "2026-08-24T10:37:00+00:00",
+    "day_of_week": "Monday",
+    "day_offset": 85,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "chore(ci): update container base image in build pipeline",
+    "diff_summary": "- FROM python:3.11.8-slim-bookworm\n+ FROM python:3.12.3-slim-bookworm\n- RUN apt-get install -y libpq-dev\n+ RUN apt-get install -y --no-install-recommends libpq-dev",
+    "files_changed": [
+      "Dockerfile",
+      ".github/workflows/ci.yml"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "integration-tests",
+      "error_message": "glibc mismatch in base runner: undefined symbol: __pthread_getspecific, version GLIBC_2.34",
+      "duration_sec": 312,
+      "exit_code": 139
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-281",
+    "timestamp": "2026-08-25T09:17:00+00:00",
+    "day_of_week": "Tuesday",
+    "day_offset": 86,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "feature-flag",
+    "author": "Alex Rivera",
+    "author_email": "alex.rivera@kestrelpay.internal",
+    "pr_title": "feat(flags): enable new_fraud_scoring_model in risk-engine",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-282",
+    "timestamp": "2026-08-26T09:08:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 87,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Sarah Jenkins",
+    "author_email": "sarah.jenkins@kestrelpay.internal",
+    "pr_title": "feat(auth-service): implement idempotency token validation",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-284",
+    "timestamp": "2026-08-26T10:30:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 87,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "feat(infra-terraform): add structured request trace logging",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-283",
+    "timestamp": "2026-08-26T11:16:00+00:00",
+    "day_of_week": "Wednesday",
+    "day_offset": 87,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "code",
+    "author": "Marcus Brody",
+    "author_email": "marcus.brody@kestrelpay.internal",
+    "pr_title": "feat(notification-service): implement idempotency token validation",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-286",
+    "timestamp": "2026-08-27T09:03:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 88,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "chore(deps): upgrade redis-py client library to 5.0.4",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-287",
+    "timestamp": "2026-08-27T16:04:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 88,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "chore(deps): bump requests from 2.31.0 to 2.32.3 in ledger-service",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-285",
+    "timestamp": "2026-08-27T17:14:00+00:00",
+    "day_of_week": "Thursday",
+    "day_offset": 88,
+    "service": "ledger-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "James Wilson",
+    "author_email": "james.wilson@kestrelpay.internal",
+    "pr_title": "chore(deps): bump pydantic to 2.7.4 for bug fixes",
+    "diff_summary": "// Routine updates to ledger-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/ledger_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-288",
+    "timestamp": "2026-08-28T17:45:00+00:00",
+    "day_of_week": "Friday",
+    "day_offset": 89,
+    "service": "auth-service",
+    "environment": "production",
+    "change_type": "migration",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "feat(db): archive stale transaction records older than 180 days",
+    "diff_summary": "// Routine updates to auth-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/auth_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-290",
+    "timestamp": "2026-08-29T12:27:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 90,
+    "service": "infra-terraform",
+    "environment": "production",
+    "change_type": "infra",
+    "author": "David Chen",
+    "author_email": "david.chen@kestrelpay.internal",
+    "pr_title": "infra(alb): tune idle timeout to 60 seconds on load balancer",
+    "diff_summary": "// Routine updates to infra-terraform logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/infra_terraform/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "passed",
+    "outcome": "healthy"
+  },
+  {
+    "deploy_id": "dep-291",
+    "timestamp": "2026-08-29T15:26:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 90,
+    "service": "notification-service",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Priya Sharma",
+    "author_email": "priya.sharma@kestrelpay.internal",
+    "pr_title": "chore(deps): bump pydantic to 2.7.4 for bug fixes",
+    "diff_summary": "// Routine updates to notification-service logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/notification_service/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  },
+  {
+    "deploy_id": "dep-289",
+    "timestamp": "2026-08-29T17:38:00+00:00",
+    "day_of_week": "Saturday",
+    "day_offset": 90,
+    "service": "search-indexer",
+    "environment": "production",
+    "change_type": "dependency-bump",
+    "author": "Chloe Bennett",
+    "author_email": "chloe.bennett@kestrelpay.internal",
+    "pr_title": "chore(deps): upgrade redis-py client library to 5.0.4",
+    "diff_summary": "// Routine updates to search-indexer logic\n- timeout_ms = 5000\n+ timeout_ms = 4500",
+    "files_changed": [
+      "src/search_indexer/core.py",
+      "tests/test_core.py"
+    ],
+    "ci_status": "failed",
+    "ci_details": {
+      "failed_stage": "lint-and-unit-tests",
+      "error_message": "Flaky test timeout in TestGatewayConnectivity::test_reconnect (exceeded 60s)",
+      "duration_sec": 84,
+      "exit_code": 1
+    },
+    "outcome": "build_failure"
+  }
+]
