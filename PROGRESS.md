@@ -4,7 +4,7 @@
 |---|---|---|---|---|
 | Phase 0 | Verify Hindsight, Don't Guess | Completed | 30m | SDK inspection & live credentials verified |
 | Phase 1 | Realistic Data Generation | Completed | 25m | 191 deploys, 30 build failures, 16 incidents, 6 patterns, 12 decoys |
-| Phase 2 | Hindsight Memory Layer | Pending | - | `hindsight_store.py` implementation |
+| Phase 2 | Hindsight Memory Layer | Completed | 30m | `hindsight_store.py` bank/directives/retain/recall/reflect verified |
 | Phase 3 | The Agent | Pending | - | Risk briefing agent with memory-on/off baselines |
 | Phase 4 | Replay / Backtest | Pending | - | Chronological backtest and rolling F1 evaluation |
 | Phase 5 | API + CI Gate | Pending | - | FastAPI endpoints and GitHub Actions YAML |
