@@ -44,3 +44,6 @@ Thumbs.db
 # Cache and Scratch
 data/cache/
 scratch/
+
+# Local submission drafts
+content/
