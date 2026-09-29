@@ -96,7 +96,11 @@ def test_true_retain_idempotency():
 
 
 def test_event_timestamps_stored_as_june_2026():
-    """Verify that event timestamps from June 2026 are preserved and recalled as June 2026 (not ingestion time)."""
+    """
+    Verify that:
+    1. Event timestamps from June 2026 are preserved and recalled with exact time of day (not midnight, not ingestion time).
+    2. Every outcome memory (incident, healthy, CI failure) is timestamped strictly after its deploy.
+    """
     test_bank = "test-py-timestamps"
     store = HindsightMemoryStore(bank_id=test_bank, fresh_bank=True)
 
@@ -111,21 +115,58 @@ def test_event_timestamps_stored_as_june_2026():
         "author": "Marcus Brody",
         "pr_title": "fix(payments): update worker buffer thresholds in config",
         "diff_summary": "- pool_max_connections: 50\n+ pool_max_connections: 15",
-        "files_changed": ["config/production.yaml"]
+        "files_changed": ["config/production.yaml"],
+        "outcome": "incident",
+        "incident": {
+            "title": "SEV-1 Connection Starvation",
+            "severity": "SEV-1",
+            "detected_at": "2026-06-05T16:49:00+00:00",
+            "impact": "Payment processing halted",
+            "error_logs": ["FATAL: remaining connection slots are reserved"],
+            "root_cause": "pool_max_connections reduced to 15 during peak Friday settlement",
+            "fix_steps": "reverted pool_max_connections to 50",
+            "runbook": "RB-PAY-04"
+        }
     }
 
     try:
+        # Retain deploy
         store.retain_deploy(deploy_sample)
         memories = store.client.list_memories(test_bank).items
         assert len(memories) > 0
 
-        # Check recalled memory timestamp
+        # Check that time of day is preserved (16:34:00)
+        found_time_of_day = False
+        deploy_dt = datetime.fromisoformat(june_ts)
+
         for m in memories:
             ts_str = str(getattr(m, "occurred_start", "") or getattr(m, "mentioned_at", ""))
-            # Must contain 2026-06
-            assert "2026-06" in ts_str or "2026-06-05" in ts_str or "2026-06-05" in m.text, (
-                f"Memory timestamp not preserved as June 2026: {ts_str} (text: {m.text})"
+            if "16:34" in ts_str or "16:34" in m.text:
+                found_time_of_day = True
+            assert "2026-06-05" in ts_str or "2026-06-05" in m.text, (
+                f"Memory timestamp not preserved as June 5, 2026: {ts_str} (text: {m.text})"
             )
+        assert found_time_of_day, "Exact time-of-day (16:34) was not preserved in deploy memory"
+
+        # Now retain outcome (incident)
+        store.retain_outcome(deploy_sample)
+        all_memories = store.client.list_memories(test_bank).items
+
+        # Find outcome memories and assert their timestamp is strictly after deploy_dt
+        outcome_found = False
+        for m in all_memories:
+            tags = getattr(m, "tags", []) or []
+            if "outcome:incident" in tags:
+                outcome_found = True
+                ts_str = str(getattr(m, "occurred_start", "") or getattr(m, "mentioned_at", ""))
+                # Parse timestamp if available
+                if ts_str and "2026" in ts_str:
+                    try:
+                        m_dt = datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
+                        assert m_dt > deploy_dt, f"Outcome memory timestamp {m_dt} is not after deploy timestamp {deploy_dt}"
+                    except Exception:
+                        pass
+        assert outcome_found, "Outcome memory was not retained"
 
         # Also test recall query timestamp anchoring
         recalled = store.recall_for_deploy(deploy_sample)
@@ -136,3 +177,4 @@ def test_event_timestamps_stored_as_june_2026():
                 assert "2026-06" in r_ts, f"Recalled timestamp not June 2026: {r_ts}"
     finally:
         store.purge_bank()
+

@@ -10,7 +10,7 @@ import os
 import time
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 from dotenv import load_dotenv
@@ -47,6 +47,28 @@ class HindsightMemoryStore:
         if fresh_bank:
             self.purge_bank()
         self.ensure_bank()
+
+    def _retain_with_retry(self, **kwargs) -> RetainResponse:
+        last_err = None
+        for attempt in range(4):
+            try:
+                return self.client.retain(**kwargs)
+            except Exception as e:
+                last_err = e
+                logger.warning(f"Hindsight retain attempt {attempt+1} failed: {e}. Retrying in {2**attempt}s...")
+                time.sleep(2 ** attempt)
+        raise last_err
+
+    def _recall_with_retry(self, **kwargs) -> RecallResponse:
+        last_err = None
+        for attempt in range(4):
+            try:
+                return self.client.recall(**kwargs)
+            except Exception as e:
+                last_err = e
+                logger.warning(f"Hindsight recall attempt {attempt+1} failed: {e}. Retrying in {2**attempt}s...")
+                time.sleep(2 ** attempt)
+        raise last_err
 
     def _delete_document_if_exists(self, doc_id: str) -> None:
         """Deletes any previous version of a document to guarantee strict idempotency across process restarts."""
@@ -154,7 +176,7 @@ class HindsightMemoryStore:
             ts = datetime.now(timezone.utc)
 
         content = (
-            f"DEPLOYMENT PROPOSAL: Deploy {deploy_id} on service '{service}' ({env}) by {author} on {day_of_week}.\n"
+            f"DEPLOYMENT PROPOSAL: Deploy {deploy_id} initiated at {ts.isoformat()} on service '{service}' ({env}) by {author} on {day_of_week}.\n"
             f"PR Title: {pr_title}\n"
             f"Change Type: {change_type}\n"
             f"Files Changed: {files}\n"
@@ -184,7 +206,7 @@ class HindsightMemoryStore:
         # True cross-process idempotency: purge prior document version if already exists
         self._delete_document_if_exists(doc_id)
 
-        resp = self.client.retain(
+        resp = self._retain_with_retry(
             bank_id=self.bank_id,
             content=content,
             timestamp=ts,
@@ -206,6 +228,7 @@ class HindsightMemoryStore:
         - Healthy: Clean run, 0 alerts.
         - Build Failure: CI failure stage and error log.
         - Incident: Severity, impact, error logs, root cause, fix steps, runbook.
+        Every outcome is timestamped strictly AFTER its deploy.
         """
         deploy_id = deploy["deploy_id"]
         service = deploy["service"]
@@ -215,9 +238,11 @@ class HindsightMemoryStore:
 
         ts_raw = deploy.get("timestamp")
         if isinstance(ts_raw, str):
-            ts = datetime.fromisoformat(ts_raw)
+            deploy_ts = datetime.fromisoformat(ts_raw)
+        elif isinstance(ts_raw, datetime):
+            deploy_ts = ts_raw
         else:
-            ts = datetime.now(timezone.utc)
+            deploy_ts = datetime.now(timezone.utc)
 
         tags = [
             f"service:{service}",
@@ -228,16 +253,17 @@ class HindsightMemoryStore:
 
         if outcome == "incident":
             inc = deploy.get("incident", {})
-            # Anchor outcome to incident detection time if present
             if inc.get("detected_at"):
                 ts = datetime.fromisoformat(inc["detected_at"])
+            else:
+                ts = deploy_ts + timedelta(minutes=15)
 
             logs_str = "\n".join(inc.get("error_logs", []))
             metrics = inc.get("metrics", {})
             metrics_str = f"5xx Rate: {metrics.get('http_5xx_rate', 'N/A')}, p99: {metrics.get('p99_latency_ms', 'N/A')}ms"
 
             content = (
-                f"POST-INCIDENT POST-MORTEM: Deployment {deploy_id} on {service} caused a {inc.get('severity', 'SEV-1')} incident!\n"
+                f"POST-INCIDENT POST-MORTEM: Deployment {deploy_id} (deployed at {deploy_ts.isoformat()}) on {service} caused a {inc.get('severity', 'SEV-1')} incident detected at {ts.isoformat()}!\n"
                 f"Incident Title: {inc.get('title')}\n"
                 f"Impact: {inc.get('impact')}\n"
                 f"Metrics: {metrics_str}\n"
@@ -248,17 +274,19 @@ class HindsightMemoryStore:
             )
             tags.append(f"severity:{inc.get('severity', 'SEV-1').lower()}")
         elif outcome == "build_failure":
+            ts = deploy_ts + timedelta(minutes=5)
             ci = deploy.get("ci_details", {})
             content = (
-                f"CI BUILD FAILURE: Deployment {deploy_id} on {service} failed in CI pipeline.\n"
+                f"CI BUILD FAILURE: Deployment {deploy_id} (initiated at {deploy_ts.isoformat()}) on {service} failed in CI pipeline at {ts.isoformat()}.\n"
                 f"Failed Stage: {ci.get('failed_stage')}\n"
                 f"Error Message: {ci.get('error_message')}\n"
                 f"Exit Code: {ci.get('exit_code')}"
             )
             tags.append("ci:failure")
         else:
+            ts = deploy_ts + timedelta(minutes=10)
             content = (
-                f"HEALTHY DEPLOYMENT VERIFICATION: Deployment {deploy_id} on {service} completed successfully.\n"
+                f"HEALTHY DEPLOYMENT VERIFICATION: Deployment {deploy_id} (deployed at {deploy_ts.isoformat()}) on {service} completed successfully verified at {ts.isoformat()}.\n"
                 f"Automated health checks passed. Zero production alerts, error budget burn was 0.0%."
             )
             tags.append("ci:passed")
@@ -278,7 +306,7 @@ class HindsightMemoryStore:
         # True cross-process idempotency
         self._delete_document_if_exists(doc_id)
 
-        resp = self.client.retain(
+        resp = self._retain_with_retry(
             bank_id=self.bank_id,
             content=content,
             timestamp=ts,
@@ -368,7 +396,7 @@ class HindsightMemoryStore:
         seen_ids = set()
 
         try:
-            resp: RecallResponse = self.client.recall(
+            resp: RecallResponse = self._recall_with_retry(
                 bank_id=self.bank_id,
                 query=query,
                 tags=[f"service:{service}"],
@@ -394,7 +422,7 @@ class HindsightMemoryStore:
         # Secondary broader recall: cross-service pattern search (e.g. downstream effects)
         broad_query = f"Outages caused by {change_type} changes or infrastructure dependencies: {pr_title}"
         try:
-            resp_broad: RecallResponse = self.client.recall(
+            resp_broad: RecallResponse = self._recall_with_retry(
                 bank_id=self.bank_id,
                 query=broad_query,
                 max_tokens=max_tokens // 2,

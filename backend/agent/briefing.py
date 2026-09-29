@@ -35,7 +35,8 @@ CACHE_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "cache" / "
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 PRIMARY_MODEL = "openai/gpt-oss-120b"
-FALLBACK_MODEL = "qwen/qwen3-32b"
+FALLBACK_MODEL = "openai/gpt-oss-20b"
+EMERGENCY_MODEL = "qwen/qwen3.8-27b"
 
 
 class ReasonItem(BaseModel):
@@ -47,15 +48,16 @@ class ReasonItem(BaseModel):
 class PreflightBriefing(BaseModel):
     deploy_id: str
     service: str
-    risk_score: float = Field(ge=0.0, le=1.0, description="Risk probability score from 0.0 to 1.0")
-    risk_level: str = Field(description="LOW, MEDIUM, or HIGH")
-    predicted_failure_mode: str = Field(description="Specific predicted failure mode, e.g. Connection pool exhaustion, or 'None anticipated'")
-    reasons: List[ReasonItem] = Field(description="Ground-truth grounded reasons with memory citations")
-    recommended_actions: List[str] = Field(description="Concrete actions for the on-call engineer or pipeline gate")
+    risk_score: float = Field(default=0.2, ge=0.0, le=1.0, description="Risk probability score from 0.0 to 1.0")
+    risk_level: str = Field(default="LOW", description="LOW, MEDIUM, or HIGH")
+    predicted_failure_mode: str = Field(default="None anticipated", description="Specific predicted failure mode")
+    reasons: List[ReasonItem] = Field(default_factory=list, description="Ground-truth grounded reasons with memory citations")
+    recommended_actions: List[str] = Field(default_factory=list, description="Concrete actions for the on-call engineer or pipeline gate")
     what_worked_before: Optional[str] = Field(default=None, description="Past remediation steps or runbooks that worked for similar incidents")
     memory_enabled: bool = True
     grounded_citation_count: int = 0
     raw_citations: List[str] = Field(default_factory=list)
+    model_used: str = PRIMARY_MODEL
 
 
 def _get_cache_path(prompt: str, model: str) -> Path:
@@ -68,10 +70,12 @@ def call_groq_with_retry(
     system_prompt: str,
     groq_api_key: Optional[str] = None,
     use_cache: bool = True,
-    max_retries: int = 3
-) -> str:
+    max_retries: int = 3,
+    forced_model: Optional[str] = None
+) -> tuple[str, str]:
     """
-    Executes Groq LLM completion with exponential backoff, model fallback, and on-disk caching.
+    Executes Groq LLM completion with temperature=0.0, exponential backoff, model fallback, and on-disk caching.
+    Returns (raw_content, model_used).
     """
     api_key = groq_api_key or os.getenv("GROQ_API_KEY")
     if not api_key:
@@ -79,16 +83,25 @@ def call_groq_with_retry(
 
     client = Groq(api_key=api_key)
 
+    if forced_model and forced_model != PRIMARY_MODEL:
+        models_to_try = [forced_model, PRIMARY_MODEL, FALLBACK_MODEL, EMERGENCY_MODEL]
+    else:
+        models_to_try = [PRIMARY_MODEL, FALLBACK_MODEL, EMERGENCY_MODEL]
+
     # Check cache
-    cache_file = _get_cache_path(prompt, PRIMARY_MODEL)
+    target_model = models_to_try[0]
+    cache_file = _get_cache_path(prompt, target_model)
     if use_cache and cache_file.exists():
         try:
             with open(cache_file, "r", encoding="utf-8") as f:
-                return f.read()
+                data = json.load(f)
+                if isinstance(data, dict) and "content" in data:
+                    return data["content"], data.get("model", target_model)
+                elif isinstance(data, str):
+                    return data, target_model
         except Exception:
             pass
 
-    models_to_try = [PRIMARY_MODEL, FALLBACK_MODEL]
     last_error = None
 
     for model in models_to_try:
@@ -101,8 +114,8 @@ def call_groq_with_retry(
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": prompt}
                     ],
-                    temperature=0.1,
-                    max_tokens=1500,
+                    temperature=0.0,
+                    max_tokens=850,
                     response_format={"type": "json_object"}
                 )
                 content = response.choices[0].message.content.strip()
@@ -110,15 +123,18 @@ def call_groq_with_retry(
                     # Write to cache
                     try:
                         with open(cache_file, "w", encoding="utf-8") as f:
-                            f.write(content)
+                            json.dump({"content": content, "model": model}, f)
                     except Exception:
                         pass
-                    return content
+                    return content, model
             except Exception as e:
                 last_error = e
                 err_str = str(e).lower()
                 logger.warning(f"Groq {model} attempt {attempt+1} failed: {e}")
-                if "429" in err_str or "rate limit" in err_str:
+                if "413" in err_str or "max completion tokens reached" in err_str:
+                    # Payload limit or token budget reached for this model, break to fallback
+                    break
+                elif "429" in err_str or "rate limit" in err_str:
                     time.sleep(backoff)
                     backoff *= 2.0
                 else:
@@ -127,7 +143,14 @@ def call_groq_with_retry(
     raise RuntimeError(f"All Groq completion attempts failed. Last error: {last_error}")
 
 
-def parse_and_validate_briefing(raw_json: str, valid_memory_ids: set, deploy_id: str, service: str, memory_enabled: bool) -> PreflightBriefing:
+def parse_and_validate_briefing(
+    raw_json: str,
+    valid_memory_ids: set,
+    deploy_id: str,
+    service: str,
+    memory_enabled: bool,
+    model_used: str = PRIMARY_MODEL
+) -> PreflightBriefing:
     """
     Parses LLM JSON output, validates Pydantic schema, and enforces citation integrity.
     """
@@ -139,13 +162,37 @@ def parse_and_validate_briefing(raw_json: str, valid_memory_ids: set, deploy_id:
         cleaned = re.sub(r"\s*```$", "", cleaned)
         data = json.loads(cleaned)
 
+    # Normalize aliases if model used slight synonyms
+    if isinstance(data, dict):
+        if "recommendations" in data and "recommended_actions" not in data:
+            data["recommended_actions"] = data["recommendations"]
+        elif "actions" in data and "recommended_actions" not in data:
+            data["recommended_actions"] = data["actions"]
+        elif "mitigations" in data and "recommended_actions" not in data:
+            data["recommended_actions"] = data["mitigations"]
+
+        if "risk_factors" in data and "reasons" not in data:
+            data["reasons"] = data["risk_factors"]
+
+        # Ensure reasons are objects
+        if "reasons" in data and isinstance(data["reasons"], list):
+            cleaned_reasons = []
+            for r in data["reasons"]:
+                if isinstance(r, str):
+                    cleaned_reasons.append({"summary": r, "memory_ids": [], "severity": "INFO"})
+                elif isinstance(r, dict):
+                    cleaned_reasons.append(r)
+            data["reasons"] = cleaned_reasons
+
     # Force consistency
     data["deploy_id"] = deploy_id
     data["service"] = service
     data["memory_enabled"] = memory_enabled
+    data["model_used"] = model_used
 
     # Parse via Pydantic
     briefing = PreflightBriefing.model_validate(data)
+    briefing.model_used = model_used
 
     # Citation Integrity Check: verify all cited memory IDs exist in valid_memory_ids
     all_raw_citations = []
@@ -180,7 +227,8 @@ def generate_briefing(
     deploy_record: Dict[str, Any],
     memory_store: Optional[HindsightMemoryStore] = None,
     memory_enabled: bool = True,
-    use_cache: bool = True
+    use_cache: bool = True,
+    forced_model: Optional[str] = None
 ) -> PreflightBriefing:
     """
     Core briefing pipeline:
@@ -207,7 +255,7 @@ def generate_briefing(
     if memory_enabled:
         if memory_store is None:
             memory_store = HindsightMemoryStore()
-        recalled_memories = memory_store.recall_for_deploy(proposal)
+        recalled_memories = memory_store.recall_for_deploy(proposal)[:6]
         valid_memory_ids = {m["id"] for m in recalled_memories}
 
         if recalled_memories:
@@ -260,15 +308,15 @@ def generate_briefing(
     )
 
     # 4. LLM Completion & Repair Loop
-    raw_response = call_groq_with_retry(user_prompt, system_prompt, use_cache=use_cache)
+    raw_response, model_used = call_groq_with_retry(user_prompt, system_prompt, use_cache=use_cache, forced_model=forced_model)
 
     try:
-        briefing = parse_and_validate_briefing(raw_response, valid_memory_ids, deploy_id, service, memory_enabled)
+        briefing = parse_and_validate_briefing(raw_response, valid_memory_ids, deploy_id, service, memory_enabled, model_used=model_used)
     except Exception as parse_err:
         logger.warning(f"Briefing JSON validation error: {parse_err}. Triggering repair prompt...")
         repair_prompt = f"The following JSON failed validation: {parse_err}\n\nRaw text was:\n{raw_response}\n\nOutput only fixed, valid JSON conforming to the schema."
-        fixed_response = call_groq_with_retry(repair_prompt, system_prompt, use_cache=False)
-        briefing = parse_and_validate_briefing(fixed_response, valid_memory_ids, deploy_id, service, memory_enabled)
+        fixed_response, fixed_model = call_groq_with_retry(repair_prompt, system_prompt, use_cache=False, forced_model=model_used)
+        briefing = parse_and_validate_briefing(fixed_response, valid_memory_ids, deploy_id, service, memory_enabled, model_used=fixed_model)
 
     return briefing
 
