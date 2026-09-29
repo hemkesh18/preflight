@@ -27,7 +27,7 @@ if str(repo_root) not in sys.path:
     sys.path.insert(0, str(repo_root))
 
 from backend.memory.hindsight_store import HindsightMemoryStore
-from backend.agent.briefing import generate_briefing, PreflightBriefing
+from backend.agent.briefing import generate_briefing, PreflightBriefing, BriefingReason
 from backend.tests.test_memory_and_leakage import get_predeploy_proposal
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
