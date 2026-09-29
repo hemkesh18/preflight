@@ -1,0 +1,115 @@
+name: Preflight Pipeline Gate
+
+on:
+  pull_request:
+    branches: [ main, production ]
+    types: [ opened, synchronize, reopened ]
+  push:
+    branches: [ main, production ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  preflight-risk-gate:
+    name: Preflight Deployment Safety Evaluation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Preflight Dependencies
+        run: |
+          pip install hindsight-client==0.10.1 groq==1.7.0 pydantic requests pyyaml
+
+      - name: Extract Pull Request Proposal Metadata
+        id: pr_metadata
+        run: |
+          echo "service=payments-api" >> $GITHUB_OUTPUT
+          echo "change_type=config" >> $GITHUB_OUTPUT
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          echo "pr_title=${PR_TITLE:-Direct Push to Main}" >> $GITHUB_OUTPUT
+          FILES=$(git diff --name-only HEAD~1 HEAD | tr '\n' ',' | sed 's/,$//')
+          echo "files_changed=$FILES" >> $GITHUB_OUTPUT
+          DIFF_SUMMARY=$(git diff HEAD~1 HEAD | head -n 40 | base64 -w 0)
+          echo "diff_b64=$DIFF_SUMMARY" >> $GITHUB_OUTPUT
+
+      - name: Evaluate Preflight Release Gate
+        id: gate_check
+        env:
+          HINDSIGHT_API_KEY: ${{ secrets.HINDSIGHT_API_KEY }}
+          HINDSIGHT_BASE_URL: ${{ secrets.HINDSIGHT_BASE_URL || 'https://api.hindsight.vectorize.io' }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          PR_TITLE: ${{ steps.pr_metadata.outputs.pr_title }}
+          FILES_CHANGED: ${{ steps.pr_metadata.outputs.files_changed }}
+          DIFF_B64: ${{ steps.pr_metadata.outputs.diff_b64 }}
+        run: |
+          python - << 'EOF'
+          import os
+          import sys
+          import json
+          import base64
+          from datetime import datetime, timezone
+
+          diff_text = base64.b64decode(os.environ.get("DIFF_B64", "")).decode("utf-8", errors="replace")
+          files = [f.strip() for f in os.environ.get("FILES_CHANGED", "").split(",") if f.strip()]
+          
+          proposal = {
+              "deploy_id": f"gh-{os.environ.get('GITHUB_RUN_ID', 'test')}",
+              "service": "payments-api",
+              "environment": "production",
+              "change_type": "config",
+              "timestamp": datetime.now(timezone.utc).isoformat(),
+              "author": os.environ.get("GITHUB_ACTOR", "ci-bot"),
+              "pr_title": os.environ.get("PR_TITLE", "Automated deployment"),
+              "diff_summary": diff_text[:1000],
+              "files_changed": files
+          }
+
+          from backend.memory.hindsight_store import HindsightMemoryStore
+          from backend.agent.briefing import generate_briefing
+
+          store = HindsightMemoryStore(bank_id="kestrel-pay")
+          briefing = generate_briefing(proposal, memory_store=store, memory_enabled=True)
+
+          print(f"::notice title=Preflight Decision::Risk Level: {briefing.risk_level} (Score: {briefing.risk_score:.2f})")
+          
+          summary_md = f"""## Preflight Risk Briefing: {briefing.risk_level} (Score: {briefing.risk_score:.2f})
+          **Predicted Failure Mode**: {briefing.predicted_failure_mode}
+          **Grounded Citations**: {briefing.grounded_citation_count} memories cited
+          
+          ### Reasons:
+          """
+          for r in briefing.reasons:
+              cites = f" [Cited IDs: {', '.join(r.memory_ids)}]" if r.memory_ids else ""
+              summary_md += f"- **[{r.severity}]** {r.summary}{cites}\n"
+
+          if briefing.recommended_actions:
+              summary_md += "\n### Recommended Mitigation Actions:\n"
+              for a in briefing.recommended_actions:
+                  summary_md += f"- {a}\n"
+
+          if briefing.what_worked_before:
+              summary_md += f"\n### What Worked Before (Runbook Precedent):\n> {briefing.what_worked_before}\n"
+
+          summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+          if summary_path:
+              with open(summary_path, "a", encoding="utf-8") as f:
+                  f.write(summary_md)
+
+          if briefing.risk_level == "HIGH" and briefing.risk_score >= 0.6:
+              print("::error::Preflight gate blocked high-risk release due to matching historical outage pattern!")
+              sys.exit(1)
+          else:
+              print("Preflight gate passed.")
+              sys.exit(0)
+          EOF
