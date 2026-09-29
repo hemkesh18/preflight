@@ -52,11 +52,61 @@ To eliminate contradictory outputs between qualitative classifications and numer
 
 ---
 
-## Operating Modes: `DEMO_MODE=cached|live`
+## Quickstart
 
-Preflight supports two operational modes via environment variable:
-- `DEMO_MODE=live` *(default)*: Issues real-time queries to Hindsight Cloud and Groq. If upstream API timeouts or quota limits occur, it gracefully serves cached results with an in-UI warning banner.
-- `DEMO_MODE=cached`: Delivers instant, deterministic results from the 150-deployment replay telemetry without external API round-trips.
+Preflight requires Python 3.11+ (tested on Python 3.14). No `make` or C/C++ compiler is required.
+
+### 1. Clone & Set Up Virtual Environment
+
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/kestrel-pay/preflight.git
+cd preflight
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+**macOS / Linux (Bash):**
+```bash
+git clone https://github.com/kestrel-pay/preflight.git
+cd preflight
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 2. Configure Environment
+
+```bash
+# Copy example configuration
+cp .env.example .env
+
+# Edit .env to add your API keys:
+# HINDSIGHT_API_KEY=hsk_...
+# GROQ_API_KEY=gsk_...
+```
+
+*(Note: For instant offline evaluation without external API keys, you can run in cached demo mode as shown below).*
+
+### 3. Launch Preflight Console & API
+
+```powershell
+# Windows PowerShell (Cached Offline Mode - instant, no keys needed):
+$env:DEMO_MODE="cached"
+python -m uvicorn backend.app.main:app --port 8000
+
+# macOS / Linux (Cached Offline Mode):
+export DEMO_MODE="cached"
+python3 -m uvicorn backend.app.main:app --port 8000
+```
+Open **`http://localhost:8000`** in your browser to view the interactive console.
+
+### 4. Run Test Suite
+
+```bash
+python -m pytest backend/tests/ -v
+```
 
 ---
 

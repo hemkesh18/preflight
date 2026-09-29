@@ -2,11 +2,11 @@
   "metadata": {
     "run_id": "single-model-1790684651",
     "bank_id": "kestrel-replay-run2-1790684651",
-    "completed_deploys": 45,
+    "completed_deploys": 60,
     "total_deploys": 150,
     "primary_model": "openai/gpt-oss-20b",
     "temperature": 0.0,
-    "elapsed_sec": 3064.2
+    "elapsed_sec": 3684.9
   },
   "headline_metrics": {
     "repeat_incidents": {
@@ -18,14 +18,14 @@
       "memory_off_rate": 1.0
     },
     "healthy_deploy_high_flag_rate": {
-      "total_healthy": 29,
-      "memory_on_high_count": 1,
-      "memory_on_rate": 0.0345,
+      "total_healthy": 42,
+      "memory_on_high_count": 4,
+      "memory_on_rate": 0.0952,
       "memory_off_high_count": 3,
-      "memory_off_rate": 0.1034,
+      "memory_off_rate": 0.0714,
       "breakdown": {
         "safe_decoys": {
-          "total": 4,
+          "total": 5,
           "memory_on_high": 1,
           "memory_off_high": 1
         },
@@ -35,8 +35,8 @@
           "memory_off_high": 0
         },
         "general_healthy": {
-          "total": 25,
-          "memory_on_high": 0,
+          "total": 37,
+          "memory_on_high": 3,
           "memory_off_high": 2
         }
       }
@@ -52,30 +52,30 @@
       "memory_off_flagged_high": 0
     },
     "build_failures": {
-      "total": 9,
-      "memory_on_flagged_high": 0,
-      "memory_off_flagged_high": 0
+      "total": 11,
+      "memory_on_flagged_high": 1,
+      "memory_off_flagged_high": 1
     },
     "calibration_at_0_5": {
       "memory_on": {
         "tp": 5,
-        "fp": 1,
-        "tn": 28,
+        "fp": 4,
+        "tn": 38,
         "fn": 2,
-        "precision": 0.8333,
+        "precision": 0.5556,
         "recall": 0.7143,
-        "f1": 0.7692,
-        "accuracy": 0.7333
+        "f1": 0.625,
+        "accuracy": 0.7167
       },
       "memory_off": {
         "tp": 5,
-        "fp": 5,
-        "tn": 24,
+        "fp": 6,
+        "tn": 36,
         "fn": 2,
-        "precision": 0.5,
+        "precision": 0.4545,
         "recall": 0.7143,
-        "f1": 0.5882,
-        "accuracy": 0.6444
+        "f1": 0.5556,
+        "accuracy": 0.6833
       }
     }
   },
@@ -482,6 +482,141 @@
       "category": "build_failure",
       "mem_on_f1": 0.7692,
       "mem_off_f1": 0.5882,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 46,
+      "deploy_id": "dep-146",
+      "category": "healthy_general",
+      "mem_on_f1": 0.7143,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": true,
+      "mem_off_high": false
+    },
+    {
+      "step": 47,
+      "deploy_id": "dep-147",
+      "category": "healthy_general",
+      "mem_on_f1": 0.7143,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 48,
+      "deploy_id": "dep-148",
+      "category": "healthy_general",
+      "mem_on_f1": 0.7143,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 49,
+      "deploy_id": "dep-149",
+      "category": "healthy_general",
+      "mem_on_f1": 0.6667,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": true,
+      "mem_off_high": false
+    },
+    {
+      "step": 50,
+      "deploy_id": "dep-150",
+      "category": "build_failure",
+      "mem_on_f1": 0.6667,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 51,
+      "deploy_id": "dep-151",
+      "category": "healthy_general",
+      "mem_on_f1": 0.6667,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 52,
+      "deploy_id": "dep-152",
+      "category": "healthy_general",
+      "mem_on_f1": 0.6667,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 53,
+      "deploy_id": "dep-154",
+      "category": "build_failure",
+      "mem_on_f1": 0.6667,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": true,
+      "mem_off_high": true
+    },
+    {
+      "step": 54,
+      "deploy_id": "dep-155",
+      "category": "healthy_general",
+      "mem_on_f1": 0.625,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": true,
+      "mem_off_high": false
+    },
+    {
+      "step": 55,
+      "deploy_id": "dep-153",
+      "category": "healthy_general",
+      "mem_on_f1": 0.625,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 56,
+      "deploy_id": "dep-156",
+      "category": "healthy_decoy",
+      "mem_on_f1": 0.625,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 57,
+      "deploy_id": "dep-157",
+      "category": "healthy_general",
+      "mem_on_f1": 0.625,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 58,
+      "deploy_id": "dep-158",
+      "category": "healthy_general",
+      "mem_on_f1": 0.625,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 59,
+      "deploy_id": "dep-159",
+      "category": "healthy_general",
+      "mem_on_f1": 0.625,
+      "mem_off_f1": 0.5556,
+      "mem_on_high": false,
+      "mem_off_high": false
+    },
+    {
+      "step": 60,
+      "deploy_id": "dep-160",
+      "category": "healthy_general",
+      "mem_on_f1": 0.625,
+      "mem_off_f1": 0.5556,
       "mem_on_high": false,
       "mem_off_high": false
     }
@@ -3407,6 +3542,1004 @@
           "Verify that the Terraform provider version supports `default_tags` without requiring state migration.",
           "Consider delaying deployment to Monday to mitigate Friday release risks, or ensure on-call support is available for the weekend.",
           "Review existing resource tags to ensure no conflicts with the new default tags."
+        ]
+      }
+    },
+    {
+      "step": 46,
+      "deploy_id": "dep-146",
+      "timestamp": "2026-06-27T10:43:00+00:00",
+      "service": "ledger-service",
+      "change_type": "feature-flag",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.85,
+        "risk_level": "HIGH",
+        "predicted_failure_mode": "Repetitive deployment of the same feature flag change on weekends, indicating a potential loop or lack of change control, which may lead to configuration drift or unintended production impact during low-coverage hours.",
+        "grounded_citation_count": 8,
+        "raw_citations": [
+          "89f392ea-b564-498a-b4c4-ad9df25f8358",
+          "6feae7d0-1d0e-40c8-86ca-2f11270e4cec",
+          "dcb80b45-d3ef-4bd0-8be1-e07d379d5590",
+          "84eac916-22fa-4b29-8bca-e28c6629d799",
+          "a2a80135-b1f6-4d98-8b17-54462dbcd6ce",
+          "f2f00974-3f9e-442c-a99a-478598fefe74",
+          "89f392ea-b564-498a-b4c4-ad9df25f8358",
+          "dcb80b45-d3ef-4bd0-8be1-e07d379d5590"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The proposed change (enabling multicurrency_settlement_preview) matches multiple past deployments (dep-112, dep-108, dep-133) of the exact same feature flag on the same service. The recurrence of this specific change, particularly on Saturdays (dep-112, dep-133), suggests a pattern of repeated or stuck deployments rather than a one-time feature rollout.",
+            "memory_ids": [
+              "89f392ea-b564-498a-b4c4-ad9df25f8358",
+              "6feae7d0-1d0e-40c8-86ca-2f11270e4cec",
+              "dcb80b45-d3ef-4bd0-8be1-e07d379d5590",
+              "84eac916-22fa-4b29-8bca-e28c6629d799",
+              "a2a80135-b1f6-4d98-8b17-54462dbcd6ce",
+              "f2f00974-3f9e-442c-a99a-478598fefe74"
+            ],
+            "severity": "HIGH"
+          },
+          {
+            "summary": "Deploying a feature flag change on a Saturday reduces the availability of on-call engineering support for immediate remediation if the multicurrency settlement logic introduces ledger inconsistencies or transaction failures.",
+            "memory_ids": [
+              "89f392ea-b564-498a-b4c4-ad9df25f8358",
+              "dcb80b45-d3ef-4bd0-8be1-e07d379d5590"
+            ],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Verify if the feature flag was already enabled in previous deployments (dep-112, dep-133) to avoid redundant changes.",
+          "Confirm with the release manager why this specific flag is being toggled repeatedly.",
+          "Postpone deployment to a weekday (Mon-Fri) to ensure full engineering coverage for potential rollback.",
+          "Review the ledger-service logs from previous Saturday deployments to check for any silent failures or warnings related to multicurrency settlement."
+        ],
+        "what_worked_before": "Previous deployments of this flag (dep-108, dep-112, dep-133) were initiated, but memory does not confirm successful stabilization or absence of issues; the repetition itself is the anomaly."
+      },
+      "memory_off": {
+        "risk_score": 0.65,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Unstable multicurrency settlement logic causing transaction failures or data inconsistency during weekend low-traffic window, potentially masking issues until Monday peak.",
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "Enabling a 'preview' feature flag for multicurrency settlement on a core ledger service introduces significant functional risk. 'Preview' implies the feature may not be fully production-ready or battle-tested.",
+            "memory_ids": [],
+            "severity": "HIGH"
+          },
+          {
+            "summary": "Deployment is scheduled for a Saturday. While traffic may be lower, support coverage is often reduced, and any issues discovered may not be resolved until the next business day, extending the mean time to recovery (MTTR).",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          },
+          {
+            "summary": "The change is isolated to a configuration file (config/flags.json), which is generally low-risk in terms of code complexity, but the semantic impact of toggling a core financial feature is high.",
+            "memory_ids": [],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Verify that the multicurrency_settlement_preview feature has passed all integration and end-to-end tests in a staging environment that mirrors production data volumes.",
+          "Confirm that a rollback plan is in place and tested, specifically ensuring that setting the flag back to false does not leave the ledger in an inconsistent state.",
+          "Consider delaying deployment to a weekday with full engineering support available, unless there is a strict business deadline requiring weekend release.",
+          "Enable enhanced monitoring and alerting for ledger-service specifically for the first 24-48 hours post-deployment."
+        ]
+      }
+    },
+    {
+      "step": 47,
+      "deploy_id": "dep-147",
+      "timestamp": "2026-06-29T10:26:00+00:00",
+      "service": "payments-api",
+      "change_type": "feature-flag",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.2,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "No specific failure mode predicted; potential for increased load on Apple Pay integration endpoints if cohort size is large, but change is a simple boolean flag toggle.",
+        "grounded_citation_count": 5,
+        "raw_citations": [
+          "0896696e-bd8f-435f-8724-66fbd1cf15ee",
+          "7c290ba7-7ea3-4f0c-bc73-d93624dfea17",
+          "1e4ad008-1073-4a5c-9a4c-158ec191fab6",
+          "4e2717a0-cd17-4e3d-8d2d-42ada03d6ac3",
+          "7e0d12bc-b4e4-4faa-b851-4d0c5798c649"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change is a feature flag toggle (apple_pay: false -> true) in config/flags.json. This is a low-complexity configuration change. While Monday deployments can carry higher risk due to change volume, the specific change type (feature flag) is generally safer than code changes or infrastructure modifications.",
+            "memory_ids": [],
+            "severity": "INFO"
+          },
+          {
+            "summary": "No similar past incident involving feature flag toggles for payments-api was found in the recalled evidence. The only incident (dep-111) involved connection pool limits and keepalive timeouts, which are unrelated to feature flag configuration.",
+            "memory_ids": [
+              "0896696e-bd8f-435f-8724-66fbd1cf15ee",
+              "7c290ba7-7ea3-4f0c-bc73-d93624dfea17"
+            ],
+            "severity": "INFO"
+          },
+          {
+            "summary": "Recent deployments to payments-api (dep-110, dep-109, dep-136) have been healthy, indicating the service is currently stable. The change does not modify infrastructure limits or dependencies, reducing the likelihood of resource exhaustion or dependency failures.",
+            "memory_ids": [
+              "1e4ad008-1073-4a5c-9a4c-158ec191fab6",
+              "4e2717a0-cd17-4e3d-8d2d-42ada03d6ac3",
+              "7e0d12bc-b4e4-4faa-b851-4d0c5798c649"
+            ],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Verify that the Apple Pay integration endpoints are fully tested and capable of handling the expected traffic volume for the 'apple_pay_direct_checkout' cohort.",
+          "Monitor error rates and latency for Apple Pay-related endpoints closely for the first 30 minutes post-deployment.",
+          "Ensure a quick rollback plan is in place (revert flag to false) in case of unexpected errors."
+        ],
+        "what_worked_before": "Recent config and dependency deployments (dep-109, dep-110, dep-136) to payments-api completed successfully with healthy status and no incidents."
+      },
+      "memory_off": {
+        "risk_score": 0.35,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Payment gateway integration failure or transaction rejection due to unverified Apple Pay backend readiness or certificate misconfiguration.",
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "Enabling a new payment method (Apple Pay) is a high-impact change that directly affects revenue and user transactions. Without historical memory to confirm past stability, the risk is assessed based on the criticality of the payment path.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          },
+          {
+            "summary": "The change is a simple feature flag toggle, which is generally low-risk in terms of code complexity, but the downstream effects of enabling a new payment rail are significant. Monday deployments can also carry slightly higher operational risk due to reduced on-call coverage or weekend-related state issues, though this is a minor heuristic.",
+            "memory_ids": [],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Verify that Apple Pay backend services, certificates, and merchant IDs are fully configured and tested in the staging environment.",
+          "Ensure monitoring and alerting are in place for Apple Pay transaction success rates and error codes.",
+          "Consider a gradual rollout (canary) to a small percentage of users before full enablement.",
+          "Confirm that rollback procedures are tested and can be executed quickly if issues arise."
+        ]
+      }
+    },
+    {
+      "step": 48,
+      "deploy_id": "dep-148",
+      "timestamp": "2026-06-29T13:13:00+00:00",
+      "service": "infra-terraform",
+      "change_type": "migration",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.15,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "Terraform state import failure due to resource ID mismatch or permission issues, or minor drift detection noise.",
+        "grounded_citation_count": 5,
+        "raw_citations": [
+          "0280b5de-1c4c-46af-a8bf-ccbe68d8043a",
+          "a3406682-6303-440f-9829-5b4058db217c",
+          "7a72338f-4926-4a68-9b61-a2c3b0ea3754",
+          "3fa5a22d-7096-498b-a23e-80f01ab3a745",
+          "dc7cba5c-b305-4a57-81be-a213ca388547"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change is a standard Terraform import operation for an existing NAT gateway. A previous identical change (dep-117) completed successfully with zero alerts, indicating this specific pattern is low-risk when executed correctly.",
+            "memory_ids": [
+              "0280b5de-1c4c-46af-a8bf-ccbe68d8043a",
+              "a3406682-6303-440f-9829-5b4058db217c",
+              "7a72338f-4926-4a68-9b61-a2c3b0ea3754"
+            ],
+            "severity": "INFO"
+          },
+          {
+            "summary": "While a recent SEV-2 incident (dep-139) occurred on this service, it was caused by a security group update blocking port 587, which is unrelated to the current NAT gateway import change. No direct failure pattern matches this specific import operation.",
+            "memory_ids": [
+              "3fa5a22d-7096-498b-a23e-80f01ab3a745",
+              "dc7cba5c-b305-4a57-81be-a213ca388547"
+            ],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Verify the NAT gateway ID 'nat-08a9bc72d1' exists and is accessible in the target AWS account/region.",
+          "Run 'terraform plan' in a dry-run mode to ensure no unintended changes are proposed alongside the import.",
+          "Confirm that the Terraform state backend has sufficient permissions to write the new resource entry."
+        ],
+        "what_worked_before": "Deployment dep-117 successfully imported existing NAT gateway resources into Terraform state with zero production alerts and no error budget burn."
+      },
+      "memory_off": {
+        "risk_score": 0.2,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "State drift or import failure leading to unintended resource recreation",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "Importing an existing NAT gateway into Terraform state is generally safe but can cause state drift if the ID is incorrect or if the resource is already managed by Terraform. The change is a simple import with no resource creation, so risk is low.",
+            "memory_ids": [],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Verify the NAT gateway ID matches the existing resource.",
+          "Run 'terraform import' locally to ensure the import succeeds.",
+          "Execute 'terraform plan' to confirm no unintended changes.",
+          "Monitor the environment for any drift after deployment."
+        ]
+      }
+    },
+    {
+      "step": 49,
+      "deploy_id": "dep-149",
+      "timestamp": "2026-06-29T15:08:00+00:00",
+      "service": "checkout-web",
+      "change_type": "migration",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.85,
+        "risk_level": "HIGH",
+        "predicted_failure_mode": "Client-side state desynchronization and payment submission errors due to unversioned or conflicting local storage schema migration during peak traffic.",
+        "grounded_citation_count": 4,
+        "raw_citations": [
+          "2d35a81e-2fef-46bf-ac93-e4913009306e",
+          "f029ec3a-1b97-4041-a392-d0e250f8c7e6",
+          "34bba2fd-35d5-4d7c-b4d4-f5c0e7554ac2",
+          "10a928fc-b106-4af8-bd71-f42dfa38ddcb"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The service 'checkout-web' has a recent history of SEV-1 incidents involving state desynchronization and payment errors (dep-135). While the previous incident was triggered by feature flags and cache TTL, the current change involves a storage schema migration which directly impacts client-side state persistence, a known fragile area for this service.",
+            "memory_ids": [
+              "2d35a81e-2fef-46bf-ac93-e4913009306e",
+              "f029ec3a-1b97-4041-a392-d0e250f8c7e6"
+            ],
+            "severity": "HIGH"
+          },
+          {
+            "summary": "The deployment is scheduled for a Monday, a day associated with higher traffic and potential operational risk. Previous deployments on Mondays (dep-103, dep-135) have been recorded, with dep-135 resulting in a major incident.",
+            "memory_ids": [
+              "34bba2fd-35d5-4d7c-b4d4-f5c0e7554ac2",
+              "10a928fc-b106-4af8-bd71-f42dfa38ddcb"
+            ],
+            "severity": "MEDIUM"
+          },
+          {
+            "summary": "The diff shows a simple flag set ('checkout_storage_v2') but the PR title indicates a 'schema migration'. If the migration logic is not idempotent or handles existing 'v1' data incorrectly, it could corrupt saved payment methods, leading to checkout failures similar to the 'empty carts' and 'payment submission errors' seen in past incidents.",
+            "memory_ids": [],
+            "severity": "HIGH"
+          }
+        ],
+        "recommended_actions": [
+          "Verify that the storage migration logic is idempotent and safely handles existing user data before setting the v2 flag.",
+          "Implement a feature flag to gradually roll out the new storage schema to a small percentage of users to monitor for state desync.",
+          "Ensure robust error handling and fallback mechanisms if the localStorage migration fails, preventing checkout blocks.",
+          "Schedule a dedicated monitoring window for the first 24 hours post-deployment to track payment success rates and client-side error logs."
+        ],
+        "what_worked_before": "Previous deployments like dep-123 and dep-137 proceeded without recorded SEV-1 incidents, but they did not involve complex client-side state migrations. The successful pattern is likely standard code/config changes without altering persistent client state structures."
+      },
+      "memory_off": {
+        "risk_score": 0.2,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "Data migration failure leading to missing or corrupted saved payment methods",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "The change introduces a new localStorage flag and a minor schema migration in a utility file, which is a low-impact modification. No historical incidents are available to indicate a pattern of failure for this type of change.",
+            "memory_ids": [],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Run unit tests for storageMigration.ts to ensure correct flag setting.",
+          "Execute integration tests that simulate migration on a test environment with existing payment method data.",
+          "Verify that the new localStorage flag does not interfere with other components.",
+          "Deploy to staging first and monitor for any missing or corrupted payment method data.",
+          "Rollback plan: keep a backup of the previous localStorage state before migration."
+        ]
+      }
+    },
+    {
+      "step": 50,
+      "deploy_id": "dep-150",
+      "timestamp": "2026-06-30T09:00:00+00:00",
+      "service": "ledger-service",
+      "change_type": "dependency-bump",
+      "category": "build_failure",
+      "pattern_id": "P5",
+      "memory_on": {
+        "risk_score": 0.35,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Runtime incompatibility due to Python 3.11 to 3.12 minor version upgrade, potentially causing subtle behavioral changes in standard library or third-party dependencies not fully covered by existing tests.",
+        "grounded_citation_count": 2,
+        "raw_citations": [
+          "8a97d5f9-4b62-4683-9a61-ba6b38f073b3",
+          "1c17b9bb-6ba2-4645-aa6d-d2adaa65a146"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change involves a minor version upgrade of the Python base image (3.11 to 3.12). While the recalled memory contains a SEV-1 incident for ledger-service (dep-120), that incident was caused by a destructive schema migration, not a dependency or base image bump. Therefore, the specific failure pattern in memory does not match this change type.",
+            "memory_ids": [
+              "8a97d5f9-4b62-4683-9a61-ba6b38f073b3",
+              "1c17b9bb-6ba2-4645-aa6d-d2adaa65a146"
+            ],
+            "severity": "INFO"
+          },
+          {
+            "summary": "General software engineering heuristic: Upgrading the base Python version can introduce breaking changes in standard library modules or alter the behavior of C-extension dependencies. Since the diff only shows the Dockerfile change, it is unclear if the application code and its dependencies have been validated against Python 3.12.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Verify that all Python dependencies in requirements.txt are compatible with Python 3.12.",
+          "Run the full integration and unit test suite in a staging environment using the new base image before promoting to production.",
+          "Check for any deprecated standard library functions used in the ledger-service codebase that were removed or changed in Python 3.12."
+        ],
+        "what_worked_before": null
+      },
+      "memory_off": {
+        "risk_score": 0.45,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "runtime errors due to incompatible dependencies or missing OS packages",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "Upgrading the base image from python:3.11-alpine3.18 to python:3.12-alpine3.20 introduces a major Python version change that may break code relying on deprecated or altered language features, and the newer Alpine release may lack packages previously available, leading to missing dependencies at runtime.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Run the full test suite against the new image locally before promotion.",
+          "Verify that all required OS packages are present in the new base image and install any missing ones.",
+          "Update any third\u2011party libraries that are incompatible with Python 3.12 and re\u2011run tests.",
+          "Deploy to a staging environment and monitor logs for import errors or missing binaries.",
+          "Prepare a rollback plan in case of runtime failures."
+        ]
+      }
+    },
+    {
+      "step": 51,
+      "deploy_id": "dep-151",
+      "timestamp": "2026-06-30T17:13:00+00:00",
+      "service": "ledger-service",
+      "change_type": "code",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.35,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Rejection of valid legacy journal batches that do not strictly sum to zero due to rounding errors or historical data inconsistencies, causing transaction processing failures.",
+        "grounded_citation_count": 2,
+        "raw_citations": [
+          "8a97d5f9-4b62-4683-9a61-ba6b38f073b3",
+          "1c17b9bb-6ba2-4645-aa6d-d2adaa65a146"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change introduces a strict invariant check (sum == 0) on journal batches. While the recalled memory contains a SEV-1 incident for ledger-service (dep-120), that incident was caused by a destructive schema migration dropping a column, not by code-level invariant enforcement. Therefore, this specific change does not match the known failure pattern in memory.",
+            "memory_ids": [
+              "8a97d5f9-4b62-4683-9a61-ba6b38f073b3",
+              "1c17b9bb-6ba2-4645-aa6d-d2adaa65a146"
+            ],
+            "severity": "INFO"
+          },
+          {
+            "summary": "General software engineering heuristic: Enforcing strict financial invariants in production code can lead to high failure rates if existing data or edge cases (e.g., floating-point precision, partial settlements) do not meet the new strict criteria. This is a common source of 'silent' failures or transaction rejections in fintech systems.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Verify that all existing journal batches in the database satisfy the sum == 0 invariant before deployment.",
+          "Implement a 'dry-run' mode or feature flag to log violations without raising exceptions initially.",
+          "Ensure UnbalancedJournalError is handled gracefully by upstream services to prevent cascading failures.",
+          "Review floating-point handling to ensure sum comparisons are robust against precision errors."
+        ],
+        "what_worked_before": "Deployment dep-108 for ledger-service was successfully verified as healthy, indicating that non-destructive feature changes to this service can be deployed safely when properly tested."
+      },
+      "memory_off": {
+        "risk_score": 0.4,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Batch processing failures due to unbalanced journal entries causing exceptions",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "The change introduces a hard invariant that will raise an exception for any unbalanced batch, potentially causing many batch processing failures if data is not pre\u2011validated.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Run comprehensive integration tests on all ledger batch scenarios to ensure all batches are balanced before deployment.",
+          "Add or update monitoring to detect spikes in UnbalancedJournalError exceptions post\u2011deployment.",
+          "Implement graceful fallback or retry logic for batch processing to avoid cascading failures.",
+          "Prepare a rollback plan in case the invariant causes widespread failures.",
+          "Validate that all upstream data pipelines produce balanced batches before they reach ledger-service."
+        ]
+      }
+    },
+    {
+      "step": 52,
+      "deploy_id": "dep-152",
+      "timestamp": "2026-07-01T14:18:00+00:00",
+      "service": "ledger-service",
+      "change_type": "config",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.2,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "Increased database write load or connection pool exhaustion due to halved sync interval, potentially causing latency spikes during peak traffic.",
+        "grounded_citation_count": 1,
+        "raw_citations": [
+          "f9b9e6a8-be41-4ecf-842c-348b7478bf0e"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change reduces the ledger batch sync commit interval from 500ms to 250ms. This doubles the frequency of database commits, which may increase I/O pressure and connection usage. No specific past incident in memory matches this exact configuration change or failure mode.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          },
+          {
+            "summary": "Recent deployment dep-150 for ledger-service failed in CI due to a glibc mismatch, but this is unrelated to the current configuration change. The current change is a simple YAML config update, not a code or dependency change.",
+            "memory_ids": [
+              "f9b9e6a8-be41-4ecf-842c-348b7478bf0e"
+            ],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Monitor database connection pool utilization and write latency during the first 15 minutes post-deployment.",
+          "Verify that the application's thread pool or async executor can handle the increased commit frequency without blocking.",
+          "Consider a canary deployment to a subset of instances to validate performance impact before full rollout."
+        ],
+        "what_worked_before": null
+      },
+      "memory_off": {
+        "risk_score": 0.4,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Increased sync frequency may cause resource contention, transaction backlog, or timeouts",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "Halving the sync interval doubles the frequency of ledger batch commits, potentially increasing CPU, I/O, and memory load. Without corresponding scaling or backpressure mechanisms, this can lead to contention or timeouts.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Deploy to a staging environment first and monitor CPU, I/O, and transaction latency metrics.",
+          "Verify that backpressure or throttling mechanisms are in place to handle the higher commit rate.",
+          "Set up automated alerts for transaction backlog or timeout spikes.",
+          "Prepare a rollback plan to revert to the previous sync_interval_ms if issues arise."
+        ]
+      }
+    },
+    {
+      "step": 53,
+      "deploy_id": "dep-154",
+      "timestamp": "2026-07-02T10:56:00+00:00",
+      "service": "auth-service",
+      "change_type": "migration",
+      "category": "build_failure",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.85,
+        "risk_level": "HIGH",
+        "predicted_failure_mode": "Migration failure due to existing duplicate data in oauth_accounts table, causing transaction lock timeouts or migration rollback, leading to authentication service unavailability.",
+        "grounded_citation_count": 3,
+        "raw_citations": [
+          "09cb2c12-f2b6-4095-9154-5b041385aa7b",
+          "1782f919-8090-4163-a04f-efbabfc62d90",
+          "77a3ff57-afd1-4d6f-b259-093c27e3c02d"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The proposed change is a database migration adding a unique constraint. If the `oauth_accounts` table contains existing duplicate rows for `(provider, provider_user_id)`, the `ALTER TABLE` statement will fail. In a production environment, this can cause long-running locks, blocking authentication requests and leading to service unavailability or timeouts.",
+            "memory_ids": [],
+            "severity": "HIGH"
+          },
+          {
+            "summary": "While the recalled memory contains a SEV-2 incident for auth-service (dep-126), it was caused by a dependency bump (pyjwt) resulting in HTTP 401 errors, not a database migration. Therefore, the specific failure mode of the current deployment (migration lock/failure) is not directly matched by the past incident, but the service's criticality and history of SEV-2 incidents warrant high caution.",
+            "memory_ids": [
+              "09cb2c12-f2b6-4095-9154-5b041385aa7b",
+              "1782f919-8090-4163-a04f-efbabfc62d90",
+              "77a3ff57-afd1-4d6f-b259-093c27e3c02d"
+            ],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Run a pre-migration query to check for existing duplicates in `oauth_accounts` (provider, provider_user_id).",
+          "If duplicates exist, clean up or deduplicate the data before applying the constraint.",
+          "Execute the migration during a low-traffic window to minimize impact if locks occur.",
+          "Ensure the migration is idempotent or has a clear rollback plan."
+        ],
+        "what_worked_before": null
+      },
+      "memory_off": {
+        "risk_score": 0.75,
+        "risk_level": "HIGH",
+        "predicted_failure_mode": "Migration fails due to existing duplicate oauth_accounts rows, causing unique constraint violation and auth-service downtime",
+        "model_used": "openai/gpt-oss-120b",
+        "reasons": [
+          {
+            "summary": "Adding a unique constraint on existing data can fail if duplicates exist, leading to migration rollback and service outage",
+            "memory_ids": [],
+            "severity": "HIGH"
+          },
+          {
+            "summary": "Auth-service is a critical component for payment flows; any downtime has high business impact",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Run a query to detect duplicate (provider, provider_user_id) rows in oauth_accounts before deployment",
+          "If duplicates exist, clean or merge them, or add a data migration to resolve conflicts",
+          "Test the migration on a staging environment with production\u2011like data",
+          "Schedule the change during a low\u2011traffic window and ensure rollback scripts are ready",
+          "Monitor auth\u2011service logs and health metrics closely during and after migration"
+        ]
+      }
+    },
+    {
+      "step": 54,
+      "deploy_id": "dep-155",
+      "timestamp": "2026-07-02T13:38:00+00:00",
+      "service": "auth-service",
+      "change_type": "migration",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.85,
+        "risk_level": "HIGH",
+        "predicted_failure_mode": "Migration failure due to existing duplicate data in oauth_accounts table causing constraint violation, leading to auth-service downtime.",
+        "grounded_citation_count": 2,
+        "raw_citations": [
+          "ea42f423-adee-430d-b414-ab412954f305",
+          "6e2c5e2b-eb69-4ed4-b938-d41723d4ec71"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The proposed change is identical to a previous migration (dep-154) that added a unique constraint on the same table and columns. While the previous deployment is recorded in memory, the risk of adding a unique constraint to a production table without prior data deduplication is high, as it will fail if any duplicate (provider, provider_user_id) pairs exist.",
+            "memory_ids": [
+              "ea42f423-adee-430d-b414-ab412954f305",
+              "6e2c5e2b-eb69-4ed4-b938-d41723d4ec71"
+            ],
+            "severity": "HIGH"
+          },
+          {
+            "summary": "The change type is a database migration on a critical authentication service. Migrations that alter schema constraints are high-risk because they can lock tables or fail mid-execution, potentially causing service unavailability.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Verify that no duplicate (provider, provider_user_id) pairs exist in the oauth_accounts table before applying the migration.",
+          "Run the migration in a staging environment with production-like data to ensure it completes successfully.",
+          "Prepare a rollback plan in case the migration fails or causes performance issues.",
+          "Schedule the deployment during a low-traffic window to minimize impact if the migration locks the table."
+        ],
+        "what_worked_before": "A similar migration (dep-154) was previously deployed on 2026-07-02, but no incident is recorded for that specific deployment in the provided memory. However, the risk remains high due to the nature of the change."
+      },
+      "memory_off": {
+        "risk_score": 0.4,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Migration failure due to duplicate rows or prolonged table lock causing downtime",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "Adding a unique constraint may fail if duplicate (provider, provider_user_id) pairs exist in the table, and the ALTER TABLE operation can lock the oauth_accounts table for a significant duration, impacting authentication services during the migration window.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Run a pre-migration data scan to identify and resolve any duplicate provider/provider_user_id pairs.",
+          "Test the migration in a staging environment with a production-sized dataset to estimate lock duration and impact.",
+          "Schedule the migration during a low-traffic period (e.g., off\u2011peak hours).",
+          "Use a rolling or online migration strategy if supported by the database to minimize downtime.",
+          "Monitor authentication metrics and database lock status during the migration.",
+          "Rollback plan: keep a backup of the table before applying the constraint and be prepared to drop the constraint if the migration fails."
+        ]
+      }
+    },
+    {
+      "step": 55,
+      "deploy_id": "dep-153",
+      "timestamp": "2026-07-02T17:19:00+00:00",
+      "service": "infra-terraform",
+      "change_type": "code",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.15,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "Terraform plan/apply drift due to existing resources lacking the new default tags, or minor state inconsistency if tags are not idempotent.",
+        "grounded_citation_count": 6,
+        "raw_citations": [
+          "b492a793-8625-49ef-9a02-b2c2d47e42d3",
+          "ab43a91a-9a59-4730-981e-e027ffd1d857",
+          "3326e6ce-5eaa-4ef5-837a-f8b25cbd9ea1",
+          "9a6eed50-ad10-44df-9a92-17f37d3ac339",
+          "9d998ff1-8973-4e09-ae2d-2f8883a1f0b4",
+          "3fa5a22d-7096-498b-a23e-80f01ab3a745"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change adds `default_tags` to the Terraform configuration. Previous deployments with identical changes (dep-144, dep-102) are recorded in memory without associated incident outcomes, suggesting this specific change pattern is stable.",
+            "memory_ids": [
+              "b492a793-8625-49ef-9a02-b2c2d47e42d3",
+              "ab43a91a-9a59-4730-981e-e027ffd1d857",
+              "3326e6ce-5eaa-4ef5-837a-f8b25cbd9ea1",
+              "9a6eed50-ad10-44df-9a92-17f37d3ac339"
+            ],
+            "severity": "INFO"
+          },
+          {
+            "summary": "A recent SEV-2 incident (dep-139) involved a security group change blocking port 587. This is unrelated to the current tag propagation change, so it does not elevate the risk for this specific diff.",
+            "memory_ids": [
+              "9d998ff1-8973-4e09-ae2d-2f8883a1f0b4",
+              "3fa5a22d-7096-498b-a23e-80f01ab3a745"
+            ],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Run `terraform plan` to verify that the addition of default_tags does not trigger unexpected replacements of existing resources.",
+          "Confirm that the `var.env` variable is correctly defined in the target environment to prevent empty tag values."
+        ],
+        "what_worked_before": "Similar tag propagation changes were successfully deployed in dep-144 and dep-102 without reported incidents."
+      },
+      "memory_off": {
+        "risk_score": 0.3,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Tagging misconfiguration leading to resource misclassification or cost allocation errors",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "Adding default tags may affect all resources, potentially causing mis-tagging or missing tags, but no historical incidents are known.",
+            "memory_ids": [],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Review tag propagation logic in the Terraform module",
+          "Run 'terraform plan' to verify tag assignments",
+          "Deploy to a staging environment first",
+          "Monitor cost allocation and compliance dashboards after deployment"
+        ]
+      }
+    },
+    {
+      "step": 56,
+      "deploy_id": "dep-156",
+      "timestamp": "2026-07-03T14:31:00+00:00",
+      "service": "search-indexer",
+      "change_type": "code",
+      "category": "healthy_decoy",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.35,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Increased 413 Payload Too Large errors or rejected valid requests due to tightened validation threshold",
+        "grounded_citation_count": 0,
+        "raw_citations": [],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change reduces the maximum allowed payload size from 50,000 to 25,000 bytes. This is a behavioral change that may reject previously valid requests, potentially causing client-side errors or data loss if legitimate payloads exceed the new limit.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          },
+          {
+            "summary": "Deployment is scheduled for Friday, which is a higher-risk day for production changes due to reduced on-call support availability over the weekend.",
+            "memory_ids": [],
+            "severity": "INFO"
+          },
+          {
+            "summary": "No specific past incidents in memory match this exact change (tightening input validation in validator.py). Previous search-indexer deployments involved bulk writing or infrastructure changes, not validation logic.",
+            "memory_ids": [],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Verify with the product team that no legitimate search queries or index updates exceed 25,000 bytes.",
+          "Monitor for 413 errors or increased rejection rates in the first hour post-deployment.",
+          "Consider deploying on a weekday (Mon-Thu) if possible to ensure full support coverage.",
+          "Ensure a rollback plan is ready in case of unexpected request rejections."
+        ],
+        "what_worked_before": "Previous search-indexer deployments (e.g., dep-138, dep-124) were verified as healthy with zero production alerts, indicating the service is generally stable, but those changes did not involve validation logic."
+      },
+      "memory_off": {
+        "risk_score": 0.35,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Client requests exceeding new payload limit causing 400 errors or service downtime",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "Reduced payload limit may break existing clients expecting larger payloads",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Notify API consumers of new payload limit",
+          "Add backward compatibility layer or deprecation period",
+          "Run integration tests with payloads near new limit",
+          "Monitor error rates post-deployment"
+        ]
+      }
+    },
+    {
+      "step": 57,
+      "deploy_id": "dep-157",
+      "timestamp": "2026-07-03T15:53:00+00:00",
+      "service": "payments-api",
+      "change_type": "code",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.35,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Logic error in idempotency check causing duplicate payment processing or incorrect 200 responses for failed webhooks, exacerbated by Friday deployment timing.",
+        "grounded_citation_count": 2,
+        "raw_citations": [
+          "ca8bf56a-7649-472e-9dce-ee3de9025721",
+          "0c948c0d-6f31-4c29-9ab4-bd3721efca25"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change modifies critical payment webhook logic (idempotency) in a core financial service. While the diff appears to add a standard Redis existence check, errors in this area can lead to duplicate charges or missed payments. No specific past incident in memory matches this exact code change pattern, but the domain is high-risk.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          },
+          {
+            "summary": "Deployment is scheduled for a Friday. Historical data shows deployments to payments-api have occurred on Fridays (e.g., dep-131), but Friday deployments generally carry higher operational risk due to reduced on-call support availability for potential rollbacks.",
+            "memory_ids": [
+              "ca8bf56a-7649-472e-9dce-ee3de9025721"
+            ],
+            "severity": "INFO"
+          },
+          {
+            "summary": "No direct match found in memory for a failure caused by webhook idempotency code changes. The only recorded failure for this service was a dependency/build issue (glibc mismatch) in dep-115, which is unrelated to this code change.",
+            "memory_ids": [
+              "0c948c0d-6f31-4c29-9ab4-bd3721efca25"
+            ],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Verify that the Redis key expiration policy aligns with the Stripe webhook retry window to prevent premature idempotency bypass.",
+          "Ensure comprehensive integration tests cover the specific edge case mentioned in the PR title (duplicate webhook delivery).",
+          "Consider delaying deployment to Monday if possible to mitigate Friday on-call risks, or ensure a dedicated on-call engineer is available for the weekend.",
+          "Monitor Stripe webhook delivery metrics and payment duplication alerts closely for the first 24 hours post-deployment."
+        ],
+        "what_worked_before": null
+      },
+      "memory_off": {
+        "risk_score": 0.4,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Duplicate or missed Stripe webhook processing due to idempotency key mismanagement",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "The change introduces an early return when a Redis key exists, which could cause legitimate webhook events to be silently ignored if the key is incorrectly set or stale.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Add comprehensive unit and integration tests covering idempotency logic.",
+          "Verify Redis key creation and expiration logic in staging before production.",
+          "Monitor webhook processing metrics and error logs immediately after deployment.",
+          "Schedule deployment during a low-traffic window (e.g., early morning) to reduce impact.",
+          "Consider a canary release to a subset of traffic before full rollout."
+        ]
+      }
+    },
+    {
+      "step": 58,
+      "deploy_id": "dep-158",
+      "timestamp": "2026-07-04T16:35:00+00:00",
+      "service": "search-indexer",
+      "change_type": "config",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.15,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "Increased latency in search index updates during transient Elasticsearch connection failures due to longer retry backoff intervals.",
+        "grounded_citation_count": 1,
+        "raw_citations": [
+          "51b2aba0-bdec-4db9-a8c0-6922021077bd"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change is a minor configuration adjustment (doubling retry backoff from 1000ms to 2000ms) which is generally low-risk and does not match any known failure patterns in memory.",
+            "memory_ids": [],
+            "severity": "INFO"
+          },
+          {
+            "summary": "Recent deployments to the search-indexer service, including code and infrastructure changes, have passed health checks with zero production alerts, indicating a stable service baseline.",
+            "memory_ids": [
+              "51b2aba0-bdec-4db9-a8c0-6922021077bd"
+            ],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Monitor search-indexer latency metrics for the next 24 hours to ensure the increased backoff does not negatively impact index freshness.",
+          "Verify that the 2000ms backoff aligns with the current Elasticsearch cluster's recovery time objectives."
+        ],
+        "what_worked_before": "Deployment dep-156 (code change) passed automated health checks with zero production alerts and no error budget burn."
+      },
+      "memory_off": {
+        "risk_score": 0.15,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "Increased latency or timeout during search operations due to longer retry backoff",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "Config change increases Elasticsearch retry backoff from 1s to 2s; may delay retry attempts but unlikely to cause outages; low risk for a Saturday deployment.",
+            "memory_ids": [],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Run integration tests against staging to verify search latency remains within acceptable thresholds",
+          "Monitor search latency and error rates in production for 24 hours after deployment",
+          "Ensure fallback mechanisms for search failures are functioning"
+        ]
+      }
+    },
+    {
+      "step": 59,
+      "deploy_id": "dep-159",
+      "timestamp": "2026-07-06T09:53:00+00:00",
+      "service": "auth-service",
+      "change_type": "feature-flag",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.2,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "No specific failure mode predicted; potential for minor latency increase or unexpected user flow changes if passkey backend is not fully ready, but no historical evidence of outage.",
+        "grounded_citation_count": 4,
+        "raw_citations": [
+          "e055ea15-1dfd-4167-89c9-131e4266c9cc",
+          "52ac2d7e-2c3b-404b-8074-b25f43858816",
+          "e75a4a58-92d4-4878-a1eb-b898c9d22428",
+          "f3c0508b-b6ba-4084-a641-9285965be256"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The change is a simple feature flag toggle for 'passkey_authentication_beta'. Memory indicates this specific feature was previously deployed (dep-118) without recorded failure or outage.",
+            "memory_ids": [
+              "e055ea15-1dfd-4167-89c9-131e4266c9cc",
+              "52ac2d7e-2c3b-404b-8074-b25f43858816"
+            ],
+            "severity": "INFO"
+          },
+          {
+            "summary": "Recent deployments to auth-service (dep-105, dep-140) have shown healthy outcomes with zero production alerts, suggesting the service is currently stable.",
+            "memory_ids": [
+              "e75a4a58-92d4-4878-a1eb-b898c9d22428",
+              "f3c0508b-b6ba-4084-a641-9285965be256"
+            ],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Proceed with deployment.",
+          "Monitor authentication success rates and latency for the first 15 minutes post-deployment.",
+          "Verify that the passkey backend services are healthy before enabling the flag for a wider user base."
+        ],
+        "what_worked_before": "Previous deployment of the same feature flag (dep-118) and recent infrastructure/dependency updates (dep-105, dep-140) completed with healthy outcomes and no error budget burn."
+      },
+      "memory_off": {
+        "risk_score": 0.35,
+        "risk_level": "MEDIUM",
+        "predicted_failure_mode": "Authentication failure due to incomplete passkey integration",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "Enabling a new authentication method via a feature flag introduces potential edge cases in the auth flow, especially if the passkey implementation is not fully tested in production traffic.",
+            "memory_ids": [],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Deploy to a small percentage of traffic first (canary)",
+          "Monitor authentication success/failure rates and latency",
+          "Ensure fallback to existing password flow is available",
+          "Prepare a quick rollback plan to toggle the flag off",
+          "Run end\u2011to\u2011end tests in staging that cover passkey registration and login"
+        ]
+      }
+    },
+    {
+      "step": 60,
+      "deploy_id": "dep-160",
+      "timestamp": "2026-07-07T09:19:00+00:00",
+      "service": "risk-engine",
+      "change_type": "config",
+      "category": "healthy_general",
+      "pattern_id": null,
+      "memory_on": {
+        "risk_score": 0.15,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "Increased false positives in fraud detection due to lowered threshold",
+        "grounded_citation_count": 6,
+        "raw_citations": [
+          "f4e4e20c-0f32-466e-9af5-e33025a6dc0c",
+          "f2cbb7f4-3692-4c47-9d2f-eeaa01d215f5",
+          "c254b65f-ffd7-4fe7-a4ba-bf9d06f194cc",
+          "b9d12238-67d1-4585-90e4-8509a1f8ea4e",
+          "96880a7e-7f59-4b19-a357-9ea1bf91d42e",
+          "df7b1303-8ea3-4953-8a6c-a57da5f13de3"
+        ],
+        "model_used": "qwen/qwen3.8-27b",
+        "reasons": [
+          {
+            "summary": "The proposed change (adjusting fraud threshold from 85 to 82) matches previous successful deployments (dep-104 and dep-129) with no recorded incidents.",
+            "memory_ids": [
+              "f4e4e20c-0f32-466e-9af5-e33025a6dc0c",
+              "f2cbb7f4-3692-4c47-9d2f-eeaa01d215f5",
+              "c254b65f-ffd7-4fe7-a4ba-bf9d06f194cc",
+              "b9d12238-67d1-4585-90e4-8509a1f8ea4e"
+            ],
+            "severity": "INFO"
+          },
+          {
+            "summary": "A recent SEV-2 incident (dep-125) occurred in the risk-engine, but it was caused by a code change leading to an OOM crash loop, not a configuration change. This does not indicate a risk for the current config-only change.",
+            "memory_ids": [
+              "96880a7e-7f59-4b19-a357-9ea1bf91d42e",
+              "df7b1303-8ea3-4953-8a6c-a57da5f13de3"
+            ],
+            "severity": "MEDIUM"
+          }
+        ],
+        "recommended_actions": [
+          "Monitor fraud detection false positive rates post-deployment",
+          "Verify that the new threshold aligns with current business risk appetite"
+        ],
+        "what_worked_before": "Previous deployments with the same configuration change (dep-104 and dep-129) were successful and did not result in incidents."
+      },
+      "memory_off": {
+        "risk_score": 0.2,
+        "risk_level": "LOW",
+        "predicted_failure_mode": "Increased false positives leading to legitimate transaction blockage",
+        "model_used": "openai/gpt-oss-20b",
+        "reasons": [
+          {
+            "summary": "Small numeric config change to fraud threshold; no code changes; no historical incidents in memory; general risk of higher false positives but unlikely to cause system outage.",
+            "memory_ids": [],
+            "severity": "INFO"
+          }
+        ],
+        "recommended_actions": [
+          "Validate new threshold in staging with synthetic transactions",
+          "Monitor fraud detection metrics and transaction success rates for 24-48 hours",
+          "Have rollback plan to revert to previous threshold if spike in legitimate blocks occurs"
         ]
       }
     }
