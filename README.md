@@ -54,7 +54,7 @@ To eliminate contradictory outputs between qualitative classifications and numer
 
 ## Quickstart
 
-Preflight requires Python 3.11+ (tested on Python 3.14). No `make` or C/C++ compiler is required.
+Preflight requires Python 3.11+ (tested on Python 3.14.7; verified compatible with Python 3.11, 3.12, 3.13, and 3.14). No `make` or C/C++ compiler is required.
 
 ### 1. Clone & Set Up Virtual Environment
 
