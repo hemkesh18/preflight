@@ -27,7 +27,7 @@ if str(repo_root) not in sys.path:
     sys.path.insert(0, str(repo_root))
 
 from backend.memory.hindsight_store import HindsightMemoryStore
-from backend.agent.briefing import generate_briefing, PreflightBriefing, BriefingReason
+from backend.agent.briefing import generate_briefing, PreflightBriefing, ReasonItem
 from backend.tests.test_memory_and_leakage import get_predeploy_proposal
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -159,9 +159,10 @@ def _get_cached_briefing_for_deploy(deploy_id: str, memory_enabled: bool) -> Opt
         risk_level="LOW",
         predicted_failure_mode="None detected (offline cached evaluation)",
         reasons=[
-            BriefingReason(
-                factor="Baseline operational checklist passed; no matching high-risk signatures in cached memory",
-                risk_direction="NEUTRAL"
+            ReasonItem(
+                summary="Baseline operational checklist passed; no matching high-risk signatures in cached memory",
+                memory_ids=[],
+                severity="INFO"
             )
         ],
         recommended_actions=["Proceed with standard deployment checklist and health verification"],
