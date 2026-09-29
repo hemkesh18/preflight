@@ -108,6 +108,7 @@ class OutcomeIngestInput(BaseModel):
 # --- Endpoints ---
 
 @app.get("/health", tags=["System"])
+@app.get("/api/health", tags=["System"])
 def health_check():
     """Liveness check, Hindsight bank connection status, and active demo mode."""
     return {
@@ -174,6 +175,7 @@ def _get_cached_briefing_for_deploy(deploy_id: str, memory_enabled: bool) -> Opt
 
 
 @app.post("/brief", response_model=PreflightBriefing, tags=["Agent"])
+@app.post("/api/brief", response_model=PreflightBriefing, tags=["Agent"])
 def evaluate_briefing(
     proposal_in: DeployProposalInput,
     memory_enabled: bool = Query(True, description="Enable Hindsight memory layer")
@@ -210,6 +212,7 @@ def evaluate_briefing(
 
 
 @app.post("/gate", response_model=GateDecision, tags=["CI Gate"])
+@app.post("/api/gate", response_model=GateDecision, tags=["CI Gate"])
 def evaluate_ci_gate(request: GateEvaluationRequest):
     """
     CI/CD Gate Endpoint: Evaluates pull request or deployment proposal and returns
@@ -294,6 +297,7 @@ def evaluate_ci_gate(request: GateEvaluationRequest):
 
 
 @app.post("/outcome", tags=["Memory"])
+@app.post("/api/outcome", tags=["Memory"])
 def record_outcome(outcome_in: OutcomeIngestInput):
     """
     Ingests post-deployment outcomes (healthy, CI failure, or incident post-mortem)
@@ -318,6 +322,7 @@ def record_outcome(outcome_in: OutcomeIngestInput):
 
 
 @app.get("/replay", tags=["Telemetry"])
+@app.get("/api/replay", tags=["Telemetry"])
 def get_replay_results():
     """
     Delivers full 150-deployment chronological backtest results, headline metrics,
@@ -335,6 +340,7 @@ def get_replay_results():
 
 
 @app.get("/patterns", tags=["Telemetry"])
+@app.get("/api/patterns", tags=["Telemetry"])
 def get_reflected_patterns():
     """
     Returns systemic recurring failure patterns synthesized across all memories

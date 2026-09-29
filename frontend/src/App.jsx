@@ -6,6 +6,7 @@ import ConfusionMatrixCard from './components/ConfusionMatrixCard';
 import GateSimulator from './components/GateSimulator';
 import PatternsExplorer from './components/PatternsExplorer';
 import DeploymentTable from './components/DeploymentTable';
+import PostIncidentForm from './components/PostIncidentForm';
 
 // Bundled fallback data in case FastAPI is not started
 import defaultReplayData from './data/replay.json';
@@ -14,7 +15,9 @@ export default function App() {
   const [replayData, setReplayData] = useState(defaultReplayData);
   const [selectedDeployId, setSelectedDeployId] = useState('dep-131');
   const [demoMode, setDemoMode] = useState('cached');
-  const [fallbackBanner, setFallbackBanner] = useState(null);
+  const [fallbackBanner, setFallbackBanner] = useState(
+    'Offline Demonstration Mode: Serving verified replay telemetry with zero external network dependencies.'
+  );
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -24,7 +27,15 @@ export default function App() {
         const healthRes = await fetch('/api/health');
         if (healthRes.ok) {
           const health = await healthRes.json();
-          setDemoMode(health.demo_mode || 'cached');
+          const mode = health.demo_mode || 'cached';
+          setDemoMode(mode);
+          if (mode === 'cached') {
+            setFallbackBanner(
+              'Offline Demonstration Mode: Serving verified replay telemetry with zero external network dependencies.'
+            );
+          } else {
+            setFallbackBanner(null);
+          }
         }
         const replayRes = await fetch('/api/replay');
         if (replayRes.ok) {
@@ -32,7 +43,6 @@ export default function App() {
           setReplayData(data);
         }
       } catch (err) {
-        // Silently use bundled replay data
         setFallbackBanner('FastAPI backend offline; serving bundled backtest results.');
       }
     }
@@ -56,12 +66,15 @@ export default function App() {
         {/* Top: Headline Metrics & Cavet Banner */}
         <HeadlineMetrics metrics={headlineMetrics} />
 
-        {/* Center: Interactive CI/CD Release Gate Simulator */}
+        {/* Center: Interactive CI/CD Release Gate Simulator (Before/After) */}
         <GateSimulator
           records={records}
           selectedDeployId={selectedDeployId}
           onSelectDeploy={(id) => setSelectedDeployId(id)}
         />
+
+        {/* Post-Incident Feedback & Runbook Ingestion Form */}
+        <PostIncidentForm />
 
         {/* Mid: Empirical Learning Curve & Confusion Matrix */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
