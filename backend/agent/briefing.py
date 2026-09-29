@@ -4,7 +4,7 @@ Evaluates upcoming deployments using Hindsight persistent memory + Groq LLM:
 - Strict input sanitization via get_predeploy_proposal (zero leakage)
 - Memory-on evaluation with cited memory IDs
 - Memory-off baseline control evaluation
-- Robust JSON schema validation, exponential backoff, repair retries, model fallback
+- Strict JSON schema validation, exponential backoff, repair retries, model fallback
 - Citation integrity verification (drops hallucinated memory IDs)
 - On-disk LLM response cache
 """

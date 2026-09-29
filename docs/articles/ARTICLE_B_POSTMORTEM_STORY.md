@@ -159,4 +159,4 @@ By pairing open-weights LLMs with Hindsight's persistent, temporally-anchored me
 Our on-call team sleeps better on Friday nights.
 
 ---
-*Explore the Preflight codebase, replay data, and documentation on [GitHub](https://github.com/kestrel-pay/preflight).*
+*Explore the Preflight codebase, replay data, and documentation on [GitHub](https://github.com/hemkesh18/preflight).*

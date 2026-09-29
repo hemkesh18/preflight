@@ -89,7 +89,7 @@ Open your browser to: **`http://localhost:8000`**
 
 If network connectivity degrades, or if upstream external APIs (Groq or Vectorize Hindsight) experience latency or rate limits during a live demo:
 
-### Fallback Option A: Seamless Cached Mode (Default)
+### Fallback Option A: Cached Mode (Default)
 Preflight includes an automated, offline-resilient replay engine (`DEMO_MODE=cached`):
 1. In the terminal, start the server with:
    ```bash

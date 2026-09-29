@@ -38,7 +38,7 @@ Post-mortems are written, filed in ticketing systems, and forgotten. When simila
 ### 4. How Vectorize Hindsight is Used
 **Prompt**: *How does your solution leverage Hindsight persistent memory? Explain the specific operations used and why simple RAG is insufficient.*
 
-Preflight leverages Vectorize Hindsight as its continuous cognitive memory engine across four core operations:
+Preflight uses Vectorize Hindsight as its continuous cognitive memory engine across four core operations:
 
 1. **Bank Creation & Cognitive Disposition (`create_bank`)**:
    - Initialized with `disposition_skepticism=4` and `disposition_literalism=4`. This prevents false positive hallucinations and ensures the agent demands concrete technical evidence (matching service, parameter keys, timing) before flagging release risk.

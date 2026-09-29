@@ -1,6 +1,6 @@
 # Hindsight Persistent Memory Integration Guide
 
-This document details how **Preflight** leverages [Vectorize's Hindsight API](https://api.hindsight.vectorize.io) to provide persistent, temporally-anchored release-risk memory for fintech CI/CD deployment pipelines.
+This document details how **Preflight** uses [Vectorize's Hindsight API](https://api.hindsight.vectorize.io) to provide persistent, temporally-anchored release-risk memory for fintech CI/CD deployment pipelines.
 
 ---
 
