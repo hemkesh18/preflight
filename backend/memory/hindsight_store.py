@@ -472,10 +472,9 @@ class HindsightMemoryStore:
             try:
                 with open(cache_file, "r", encoding="utf-8") as f:
                     cached = json.load(f)
-                if now - cached.get("cached_at", 0) < cache_ttl_sec:
-                    self._pattern_cache = cached
-                    self._cache_timestamp = cached.get("cached_at", 0)
-                    return cached
+                self._pattern_cache = cached
+                self._cache_timestamp = cached.get("cached_at", now)
+                return cached
             except Exception:
                 pass
 

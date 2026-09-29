@@ -42,12 +42,19 @@ export default function App() {
           const data = await replayRes.json();
           setReplayData(data);
         }
+        const patternsRes = await fetch('/api/patterns');
+        if (patternsRes.ok) {
+          const pData = await patternsRes.json();
+          setPatternsData(pData);
+        }
       } catch (err) {
         setFallbackBanner('FastAPI backend offline; serving bundled backtest results.');
       }
     }
     fetchApi();
   }, []);
+
+  const [patternsData, setPatternsData] = useState(null);
 
   const metadata = replayData?.metadata || {};
   const headlineMetrics = replayData?.headline_metrics || {};
@@ -83,7 +90,7 @@ export default function App() {
         </div>
 
         {/* Synthesized Systemic Patterns */}
-        <PatternsExplorer />
+        <PatternsExplorer patternsData={patternsData} />
 
         {/* Full 150 Deployment Stream Table */}
         <DeploymentTable
