@@ -45,7 +45,7 @@ export default function PatternsExplorer({ patterns }) {
     },
     {
       id: 'P5',
-      service: 'base-image bump',
+      service: 'payments / ledger / auth',
       type: 'Dockerfile',
       timing: 'CI stage',
       title: 'Base Image glibc ABI Incompatibility (CI Build Failure)',
