@@ -1,7 +1,7 @@
 {
   "patterns_summary": "Identified systemic patterns: 1) payments-api Friday evening config updates lead to connection starvation; 2) ledger-service migrations without backfills cause downstream search and reporting crashloops; 3) auth-service jwt upgrades cause 401 cascades in checkout-web; 4) checkout_v2 feature flag toggles combined with low cache TTL break checkout state.",
   "evidence_memory_ids": [],
-  "cached_at": 1790685060.612456,
+  "cached_at": 1790688187.1788838,
   "bank_id": "kestrel-pay",
   "status": "degraded"
 }

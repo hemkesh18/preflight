@@ -6,6 +6,7 @@ Test suite for:
 """
 import os
 import json
+import time
 import pytest
 from datetime import datetime, timezone
 from pathlib import Path
@@ -56,10 +57,24 @@ def test_leakage_strictly_allowed_keys():
             assert f not in proposal, f"LEAKAGE DETECTED: {f} found in proposal for {deploy['deploy_id']}"
 
 
+def _wait_for_memories(client, bank_id, min_count=1, timeout=8):
+    start = time.time()
+    while time.time() - start < timeout:
+        try:
+            mems = client.list_memories(bank_id).items
+            if len(mems) >= min_count:
+                return mems
+        except Exception:
+            pass
+        time.sleep(1.0)
+    return client.list_memories(bank_id).items
+
+
 def test_true_retain_idempotency():
     """Verify that retaining the same document ID twice leaves the bank's memory count strictly flat."""
-    test_bank = "test-py-idempotency"
+    test_bank = f"test-py-idemp-{int(time.time())}"
     store = HindsightMemoryStore(bank_id=test_bank, fresh_bank=True)
+    time.sleep(1.5)
 
     deploy_sample = {
         "deploy_id": "dep-idemp-01",
@@ -77,6 +92,7 @@ def test_true_retain_idempotency():
     try:
         # First retain
         store.retain_deploy(deploy_sample)
+        time.sleep(3.0)
         memories_after_first = store.client.list_memories(test_bank).items
         count_first = len(memories_after_first)
         assert count_first > 0
@@ -86,6 +102,7 @@ def test_true_retain_idempotency():
 
         # Second retain of the exact same document ID (simulating replay re-run or retry)
         store.retain_deploy(deploy_sample)
+        time.sleep(3.0)
         memories_after_second = store.client.list_memories(test_bank).items
         count_second = len(memories_after_second)
 
@@ -101,8 +118,9 @@ def test_event_timestamps_stored_as_june_2026():
     1. Event timestamps from June 2026 are preserved and recalled with exact time of day (not midnight, not ingestion time).
     2. Every outcome memory (incident, healthy, CI failure) is timestamped strictly after its deploy.
     """
-    test_bank = "test-py-timestamps"
+    test_bank = f"test-py-ts-{int(time.time())}"
     store = HindsightMemoryStore(bank_id=test_bank, fresh_bank=True)
+    time.sleep(1.5)
 
     june_ts = "2026-06-05T16:34:00+00:00"
     deploy_sample = {
@@ -132,7 +150,7 @@ def test_event_timestamps_stored_as_june_2026():
     try:
         # Retain deploy
         store.retain_deploy(deploy_sample)
-        memories = store.client.list_memories(test_bank).items
+        memories = _wait_for_memories(store.client, test_bank, min_count=1)
         assert len(memories) > 0
 
         # Check that time of day is preserved (16:34:00)
@@ -150,7 +168,8 @@ def test_event_timestamps_stored_as_june_2026():
 
         # Now retain outcome (incident)
         store.retain_outcome(deploy_sample)
-        all_memories = store.client.list_memories(test_bank).items
+        time.sleep(2.0)
+        all_memories = _wait_for_memories(store.client, test_bank, min_count=count_first if 'count_first' in locals() else 2)
 
         # Find outcome memories and assert their timestamp is strictly after deploy_dt
         outcome_found = False
@@ -177,4 +196,5 @@ def test_event_timestamps_stored_as_june_2026():
                 assert "2026-06" in r_ts, f"Recalled timestamp not June 2026: {r_ts}"
     finally:
         store.purge_bank()
+
 

@@ -213,7 +213,8 @@ class HindsightMemoryStore:
             context="Kestrel Pay CI/CD Pipeline Gate - Pre-Deploy Risk Evaluation",
             document_id=doc_id,
             tags=tags,
-            metadata=metadata
+            metadata=metadata,
+            update_mode="replace"
         )
         self._retained_doc_ids.add(doc_id)
 
@@ -313,7 +314,8 @@ class HindsightMemoryStore:
             context="Kestrel Pay Incident & Deployment Post-Mortem Records",
             document_id=doc_id,
             tags=tags,
-            metadata=metadata
+            metadata=metadata,
+            update_mode="replace"
         )
         self._retained_doc_ids.add(doc_id)
 
