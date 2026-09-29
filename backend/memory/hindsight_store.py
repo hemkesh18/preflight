@@ -36,7 +36,14 @@ class HindsightMemoryStore:
         self.base_url = base_url or os.getenv("HINDSIGHT_BASE_URL", "https://api.hindsight.vectorize.io")
         self.api_key = api_key or os.getenv("HINDSIGHT_API_KEY")
 
-        if not self.api_key:
+        if not self.api_key or self.api_key.startswith("your_"):
+            if os.getenv("DEMO_MODE", "cached").lower() == "cached":
+                logger.info("Running in cached demo mode without live Hindsight API key.")
+                self.client = None
+                self._retained_doc_ids = set()
+                self._pattern_cache = None
+                self._cache_timestamp = 0.0
+                return
             raise ValueError("HINDSIGHT_API_KEY is not set. Check your .env file.")
 
         self.client = Hindsight(base_url=self.base_url, api_key=self.api_key)
@@ -81,6 +88,8 @@ class HindsightMemoryStore:
 
     def purge_bank(self) -> None:
         """Deletes the memory bank completely to ensure sterile replay / test isolation."""
+        if not self.client:
+            return
         try:
             self.client.delete_bank(bank_id=self.bank_id)
             logger.info(f"Purged existing memory bank '{self.bank_id}' for sterile run.")
@@ -94,6 +103,8 @@ class HindsightMemoryStore:
         Initializes the memory bank for Kestrel Pay with its mission and core directives.
         Idempotent: catches already-existing bank status.
         """
+        if not self.client:
+            return
         mission = (
             "Release-risk analyst for fintech Kestrel Pay; learn which change types, "
             "services, and deployment timings precede incidents and build failures; "
