@@ -215,11 +215,12 @@ def synthesize_patterns(self) -> Dict[str, Any]:
 ```
 
 ### Discovered Patterns in Kestrel Pay Pipeline:
-- **P1: Payments Friday Peak Timeout** (`RB-PAY-04`): Friday afternoon config edits reducing payment timeouts cause connection pileups.
-- **P2: Auth Microservice Token Rotation** (`RB-AUTH-01`): Auth schema migrations without token backward compatibility trigger session invalidation.
-- **P3: Ledger DB Pool Starvation** (`RB-DB-02`): Reducing connection pools under concurrent transaction volume triggers cascade deadlocks.
-- **P4: Notification Worker Flooding** (`RB-NOTIF-03`): Worker concurrency upgrades overwhelming third-party webhook rate limits.
-- **P6: Inverted Healthcheck Timeout** (`RB-GATEWAY-05`): Gateway dependency timeouts set lower than upstream retry thresholds cause 502 cascades.
+- **P1: Payments Friday Peak Timeout** (`RB-PAY-04`): `payments-api` Friday afternoon config edits reducing connection pools (`pool_max_connections` 50 -> 15) cause connection starvation under peak batch settlement.
+- **P2: Unbackfilled Column Drop** (`RB-DB-02`): `ledger-service` schema migration dropping `legacy_settlement_id` without 2-phase code transition crashes search-indexer and reporting-service.
+- **P3: PyJWT Breaking Bump** (`RB-SEC-09`): `auth-service` dependency bump to incompatible `pyjwt` major version breaks `checkout-web` token verification.
+- **P4: Checkout Flag & Low Cache TTL** (`RB-WEB-05`): `checkout-web` enabling `checkout_v2` while `session_cache_ttl` is < 60s causes thundering-herd cart invalidation.
+- **P5: Base Image glibc ABI Incompatibility** (`RB-CI-01`): `Dockerfile` alpine/debian base image upgrade introduces glibc symbol mismatch with payment crypto binaries in CI integration stage.
+- **P6: Security Group Egress Restriction** (`RB-INFRA-07`): `infra-terraform` egress CIDR restriction blocks outbound HTTPS to banking partner gateways.
 
 ---
 
@@ -243,3 +244,22 @@ backend/tests/test_memory_and_leakage.py::test_event_timestamps PASSED       [10
 1. `test_zero_leakage_whitelist`: Confirms `get_predeploy_proposal()` keys match the strict whitelist with zero outcome leakage.
 2. `test_retain_idempotency`: Confirms retaining the exact same document across process restarts leaves bank fact count completely flat ($N=N$).
 3. `test_event_timestamps`: Confirms retained dates from June 2026 retain exact hour, minute, and second without time-of-day loss.
+ 
+---
+
+## 8. Why Preflight with Hindsight is NOT Plain RAG
+
+A naive RAG setup embeds documents into a vector space and performs nearest-neighbor semantic search. In CI/CD release risk evaluation, naive RAG fails completely for four structural reasons:
+
+| Capability | Naive Vector RAG | Preflight with Vectorize Hindsight |
+| :--- | :--- | :--- |
+| **Temporal Horizon & Leakage** | Stateless vector similarity retrieves future incidents if semantically similar, introducing catastrophic look-ahead bias. | First-class `query_timestamp` parameter anchors search strictly before $T_{\text{deploy}}$, eliminating future knowledge. |
+| **Cross-Incident Synthesis** | Chunk-based retrieval returns isolated fragments of old tickets; cannot synthesize systemic trends across 150 deploys. | `reflect()` autonomously clusters related outages across services, extracting root causal mechanisms and runbooks. |
+| **Cognitive Disposition** | High cosine similarity forces spurious matches on generic diffs (e.g. routine dependency updates match past critical CVEs). | Tuned `disposition_skepticism=4` and `disposition_literalism=4` require concrete evidence before establishing causal risk. |
+| **Continuous Learning Loop** | Static vector index requires manual re-indexing jobs; no concept of experiential accumulation or outcome tracking. | Closed-loop retain: Every deploy stores its plan before merge and its outcome after merge, making the agent progressively smarter over time. |
+
+### How the Agent Improves Over Time
+As deployment velocity scales, Preflight's memory bank accumulates the operational reality of the organization:
+1. **First Occurrence (Novel Incident)**: The agent has zero precedent. It evaluates the PR on static cues (diff size, blast radius). If an outage occurs, the incident post-mortem and remediation runbook are ingested into memory.
+2. **Subsequent Occurrences (Repeat Incidents)**: When a developer opens a similar PR months later, Hindsight's temporal recall retrieves the exact precedent, failure mode, and runbook. Preflight flags the deploy as `HIGH` risk and blocks the release with the exact mitigation steps.
+3. **Safe Precedents (Decoys)**: Healthy runs under similar conditions are also retained, ensuring the agent learns which configurations are safe and driving down false alarms.

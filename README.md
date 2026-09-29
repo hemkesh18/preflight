@@ -60,7 +60,7 @@ Preflight requires Python 3.11+ (tested on Python 3.14.7; verified compatible wi
 
 **Windows (PowerShell):**
 ```powershell
-git clone https://github.com/kestrel-pay/preflight.git
+git clone https://github.com/hemkesh18/preflight.git
 cd preflight
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
@@ -69,7 +69,7 @@ pip install -r requirements.txt
 
 **macOS / Linux (Bash):**
 ```bash
-git clone https://github.com/kestrel-pay/preflight.git
+git clone https://github.com/hemkesh18/preflight.git
 cd preflight
 python3 -m venv .venv
 source .venv/bin/activate
@@ -164,11 +164,12 @@ Interactive Recharts time-series plotting rolling F1, precision, and recall traj
 
 ### 5. Systemic Reflected Patterns
 Visual cards displaying failure mechanisms synthesized by Hindsight reflection (`reflect()`):
-- **P1**: Friday Afternoon Payments Gateway Timeout (`RB-PAY-04`)
-- **P2**: Auth Service Token Migration Invalidation (`RB-AUTH-01`)
-- **P3**: Database Connection Pool Starvation (`RB-DB-02`)
-- **P4**: Notification Worker Webhook Flooding (`RB-NOTIF-03`)
-- **P6**: Inverted Gateway Dependency Timeout Cascades (`RB-GATEWAY-05`)
+- **P1**: Friday Evening Payments Connection Pool Exhaustion (`RB-PAY-04`)
+- **P2**: Unbackfilled Column Drop Schema Migration (`RB-DB-02`)
+- **P3**: PyJWT Dependency Upgrade Incompatibility (`RB-SEC-09`)
+- **P4**: Checkout Feature Flag & Low Cache TTL Race (`RB-WEB-05`)
+- **P5**: Base Image glibc ABI Incompatibility CI Failure (`RB-CI-01`)
+- **P6**: Security Group Egress Restriction Outage (`RB-INFRA-07`)
 
 ---
 
