@@ -34,3 +34,19 @@
   - Temperature 0.0 with identical model (`openai/gpt-oss-120b` or logged fallback) for both arms on each deploy.
   - Zero leakage: Input to briefing is strictly `get_predeploy_proposal(deploy)`.
 
+### 6. Score Clamping & Threshold Mapping
+- **Boundary Enforcement**: In `parse_and_validate_briefing()`, risk scores are clamped to prevent contradictory outputs between label and probability:
+  - If `risk_level == "HIGH"` and `risk_score < 0.60`, it is clamped to `0.75`.
+  - If `risk_level == "LOW"` and `risk_score > 0.40`, it is clamped to `0.20`.
+  - Scores between `0.35` and `0.59` represent `MEDIUM` advisory risk.
+- **CI/CD Gate Thresholds**:
+  - `risk_score >= 0.60` (or `HIGH`): **`BLOCK`** (Exit Code `1`). Release is halted; PR requires incident remediation.
+  - `0.35 <= risk_score < 0.60` (or `MEDIUM`): **`WARN`** (Exit Code `0`). Release is flagged with warnings; requires on-call review.
+  - `risk_score < 0.35` (or `LOW`): **`PASS`** (Exit Code `0`). Release proceeds automatically.
+
+### 7. Demo Modes & Resilience
+- **`DEMO_MODE=cached|live`**:
+  - `cached`: Delivers deterministic replay results and cached LLM responses instantaneously for demos and evaluations.
+  - `live`: Direct real-time calls to Hindsight Cloud and Groq endpoints. If network, DNS, or rate limit exceptions occur, gracefully falls back to cached baseline with an in-UI warning banner.
+
+

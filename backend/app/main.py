@@ -52,6 +52,9 @@ app.add_middleware(
 memory_store = HindsightMemoryStore()
 
 
+DEMO_MODE = os.getenv("DEMO_MODE", "cached").lower()
+
+
 # --- Request & Response Models ---
 
 class DeployProposalInput(BaseModel):
@@ -86,6 +89,9 @@ class GateDecision(BaseModel):
     grounded_citations: int
     summary_markdown: str
     briefing: PreflightBriefing
+    demo_mode: str = "cached"
+    fallback_used: bool = False
+    fallback_banner: Optional[str] = None
 
 
 class OutcomeIngestInput(BaseModel):
@@ -103,14 +109,50 @@ class OutcomeIngestInput(BaseModel):
 
 @app.get("/health", tags=["System"])
 def health_check():
-    """Liveness check and Hindsight bank connection status."""
+    """Liveness check, Hindsight bank connection status, and active demo mode."""
     return {
         "status": "healthy",
         "service": "Preflight Release Gate Agent",
+        "demo_mode": DEMO_MODE,
         "bank_id": memory_store.bank_id,
+        "thresholds": {
+            "BLOCK": "risk_score >= 0.60 (or HIGH)",
+            "WARN": "0.35 <= risk_score < 0.60 (or MEDIUM)",
+            "PASS": "risk_score < 0.35 (or LOW)"
+        },
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "version": "1.0.0"
     }
+
+
+def _get_cached_briefing_for_deploy(deploy_id: str, memory_enabled: bool) -> Optional[PreflightBriefing]:
+    """Retrieves pre-computed briefing from replay.json if available."""
+    replay_file = repo_root / "data" / "results" / "replay.json"
+    if replay_file.exists():
+        try:
+            with open(replay_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            for r in data.get("records", []):
+                if r.get("deploy_id") == deploy_id:
+                    arm_key = "memory_on" if memory_enabled else "memory_off"
+                    arm_data = r.get(arm_key, {})
+                    return PreflightBriefing(
+                        deploy_id=deploy_id,
+                        service=r.get("service", "unknown"),
+                        risk_score=arm_data.get("risk_score", 0.2),
+                        risk_level=arm_data.get("risk_level", "LOW"),
+                        predicted_failure_mode=arm_data.get("predicted_failure_mode", "None anticipated"),
+                        reasons=arm_data.get("reasons", []),
+                        recommended_actions=arm_data.get("recommended_actions", []),
+                        what_worked_before=arm_data.get("what_worked_before"),
+                        memory_enabled=memory_enabled,
+                        grounded_citation_count=arm_data.get("grounded_citation_count", 0),
+                        raw_citations=arm_data.get("raw_citations", []),
+                        model_used=arm_data.get("model_used", "openai/gpt-oss-120b")
+                    )
+        except Exception:
+            pass
+    return None
 
 
 @app.post("/brief", response_model=PreflightBriefing, tags=["Agent"])
@@ -120,9 +162,16 @@ def evaluate_briefing(
 ):
     """
     Evaluates an incoming deployment proposal at the pipeline gate.
-    Strips any outcome fields to strictly enforce zero leakage.
+    Honors DEMO_MODE=cached|live with automatic graceful fallback.
     """
     raw_dict = proposal_in.model_dump()
+    deploy_id = proposal_in.deploy_id
+
+    if DEMO_MODE == "cached":
+        cached = _get_cached_briefing_for_deploy(deploy_id, memory_enabled)
+        if cached:
+            return cached
+
     try:
         briefing = generate_briefing(
             raw_dict,
@@ -132,7 +181,10 @@ def evaluate_briefing(
         )
         return briefing
     except Exception as e:
-        logger.error(f"Failed to generate briefing: {e}")
+        logger.warning(f"Live briefing failed: {e}. Checking fallback cache...")
+        cached = _get_cached_briefing_for_deploy(deploy_id, memory_enabled)
+        if cached:
+            return cached
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Briefing generation failed: {str(e)}"
@@ -146,12 +198,28 @@ def evaluate_ci_gate(request: GateEvaluationRequest):
     exit code (0 for pass/warn, 1 for block) with markdown summary for pipeline logs.
     """
     raw_dict = request.proposal.model_dump()
-    briefing = generate_briefing(
-        raw_dict,
-        memory_store=memory_store,
-        memory_enabled=request.memory_enabled,
-        use_cache=True
-    )
+    deploy_id = request.proposal.deploy_id
+    fallback_used = False
+    fallback_banner = None
+
+    if DEMO_MODE == "cached":
+        cached = _get_cached_briefing_for_deploy(deploy_id, request.memory_enabled)
+        if cached:
+            briefing = cached
+        else:
+            briefing = generate_briefing(raw_dict, memory_store=memory_store, memory_enabled=request.memory_enabled, use_cache=True)
+    else:
+        try:
+            briefing = generate_briefing(raw_dict, memory_store=memory_store, memory_enabled=request.memory_enabled, use_cache=True)
+        except Exception as e:
+            logger.warning(f"Live gate evaluation failed: {e}. Falling back to cached briefing...")
+            cached = _get_cached_briefing_for_deploy(deploy_id, request.memory_enabled)
+            if cached:
+                briefing = cached
+                fallback_used = True
+                fallback_banner = f"Upstream API unavailable. Serving verified cached briefing for {deploy_id}."
+            else:
+                raise HTTPException(status_code=500, detail=str(e))
 
     is_high = briefing.risk_level == "HIGH" or briefing.risk_score >= request.risk_threshold
     is_medium = briefing.risk_level == "MEDIUM" or (0.35 <= briefing.risk_score < request.risk_threshold)
@@ -200,7 +268,10 @@ def evaluate_ci_gate(request: GateEvaluationRequest):
         predicted_failure_mode=briefing.predicted_failure_mode,
         grounded_citations=briefing.grounded_citation_count,
         summary_markdown=summary_md,
-        briefing=briefing
+        briefing=briefing,
+        demo_mode=DEMO_MODE,
+        fallback_used=fallback_used,
+        fallback_banner=fallback_banner
     )
 
 
@@ -253,3 +324,11 @@ def get_reflected_patterns():
     """
     patterns = memory_store.reflect_patterns(force_refresh=False)
     return patterns
+
+
+# Mount built frontend dist on root for unified single-server deployment
+from fastapi.staticfiles import StaticFiles
+frontend_dist = repo_root / "frontend" / "dist"
+if frontend_dist.exists():
+    app.mount("/", StaticFiles(directory=str(frontend_dist), html=True), name="frontend")
+
